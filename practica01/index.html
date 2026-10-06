@@ -18,6 +18,40 @@
     /* ===== FIN DIEGO T ===== */
     /* ===== ESTILOS DE ANDRES ===== */
     /* ===== FIN ANDRES ===== */
+    /* ===== ESTILOS DE LEONARDO ===== */
+    .contenedor-reto-leo {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .contenedor-reto-leo input {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .contenedor-reto-leo button {
+      padding: 8px 16px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: fit-content;
+    }
+    .contenedor-reto-leo button:hover {
+      background-color: #0052a3;
+    }
+    .salida-leo {
+      background: #eef6ff;
+      padding: 10px;
+      border-left: 4px solid #0066cc;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    /* ===== FIN LEONARDO ===== */
+
   </style>
 </head>
 <body>
@@ -69,6 +103,33 @@
   </section>
   <!-- ================= FIN ANDRES ================= -->
 
+  <!-- ================= RETO LEO ================= -->
+  <section class="reto" id="reto-leonardo">
+    <h2>Reto: Partir Frase por Ancho Máximo — Leonardo</h2>
+    
+    <div class="contenedor-reto-leo">
+      <label for="frase-leo">Frase a dividir:</label>
+      <input type="text" id="frase-leo" value="Hoy es un día de suerte para todos">
+
+      <label for="ancho-leo">Ancho máximo por segmento:</label>
+      <input type="number" id="ancho-leo" value="7" min="1">
+
+      <button onclick="ejecutarRetoLeonardo()">Dividir Frase</button>
+    </div>
+
+    <h4>Resultado:</h4>
+    <div id="resultado-leo" class="salida-leo">Haz clic en el botón para probar la función...</div>
+
+    <div class="resena">
+      <h3>Reseña y conclusión</h3>
+      <p><strong>Conceptos usados:</strong> Arreglos, descomposicion de cadenas con <code>split()</code>, acumuladores con <code>reduce()</code> y lógica condicional.</p>
+      <p><strong>Decisión:</strong> Se optó por usar <code>reduce()</code> para iterar sobre las palabras limpiamente construyendo las líneas dinámicamente sin cortar palabras por la mitad.</p>
+      <p><strong>Dificultad resuelta:</strong> Controlar los espacios en blanco entre palabras para no superar el límite indicado.</p>
+    </div>
+  </section>
+  <!-- ================= FIN LEO ================= -->
+
+
   <script>
     // ===== JS DE BENJAMIN =====
     // ===== FIN BENJAMIN =====
@@ -81,6 +142,41 @@
 
     // ===== JS DE ANDRES =====
     // ===== FIN ANDRES =====
+
+    // ===== JS DE LEO =====
+    function splitFrase2(frase, ancho) {  
+      let palabras = frase.split(' ');
+      return palabras.reduce((pal, act) => { 
+        if (pal.length === 0) { 
+          pal[0] = act;
+        } else {
+          if (pal[pal.length - 1].length + 1 + act.length <= ancho) {          
+            pal[pal.length - 1] += ' ' + act;
+          } else {
+            pal.push(act);          
+          }
+        }
+        return pal;
+      }, []);
+    }
+
+    function ejecutarRetoLeonardo() {
+      const frase = document.getElementById('frase-leo').value;
+      const ancho = parseInt(document.getElementById('ancho-leo').value, 10);
+      
+      if (!frase.trim() || isNaN(ancho) || ancho <= 0) {
+        document.getElementById('resultado-leo').innerText = "Por favor ingresa una frase y un ancho válido.";
+        return;
+      }
+
+      const segmentos = splitFrase2(frase, ancho);
+      document.getElementById('resultado-leo').innerHTML = 
+        "<strong>Arreglo obtenido:</strong><br>[" + 
+        segmentos.map(s => `'${s}'`).join(', ') + 
+        "]";
+    }
+    // ===== FIN LEO =====
+
   </script>
 </body>
 </html>
