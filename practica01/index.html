@@ -61,10 +61,18 @@
 
   <!-- ================= RETO DE ANDRES ================= -->
   <section class="reto" id="reto-andres">
-    <h2>Reto: (nombre del reto) — Andrés</h2>
+    <h2>Reto: Calculadora de MCM</h2>
+    
+    <div style="margin-bottom: 1rem;">
+      <label>Número 1: <input type="number" id="andres-num1" value="4"></label>
+      <label>Número 2: <input type="number" id="andres-num2" value="6"></label>
+      <button id="andres-btn">Calcular MCM</button>
+      <p><strong>Resultado: </strong> <span id="andres-resultado">...</span></p>
+    </div>
+
     <div class="resena">
       <h3>Reseña y conclusión</h3>
-      <p>...</p>
+      <p>Conceptos usados: DOM, Event Listeners, bucle while.</p>
     </div>
   </section>
   <!-- ================= FIN ANDRES ================= -->
@@ -80,6 +88,30 @@
     // ===== FIN DIEGO T =====
 
     // ===== JS DE ANDRES =====
+    function mcm(a, b) {
+      let mul = Math.max(a, b);
+      let inc = mul;
+      while (mul % a !== 0 || mul % b !== 0) {
+        mul += inc;
+      }
+      return mul;
+    }
+
+    // Conectar con el HTML usando los IDs
+    const input1 = document.getElementById('andres-num1');
+    const input2 = document.getElementById('andres-num2');
+    const boton = document.getElementById('andres-btn');
+    const resultadoTexto = document.getElementById('andres-resultado');
+
+    // Eventos
+    boton.addEventListener('click', function() {
+      
+      let numA = parseInt(input1.value);
+      let numB = parseInt(input2.value);
+      let resultadoMCM = mcm(numA, numB);
+      resultadoTexto.textContent = resultadoMCM;
+    });
+
     // ===== FIN ANDRES =====
   </script>
 </body>
