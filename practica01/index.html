@@ -23,7 +23,7 @@
     <a href="#reto-diegoC"><b>D</b>Diego C</a>
     <a href="#reto-diegoT"><b>D</b>Diego T</a>
     <a href="#reto-andres"><b>A</b>Andrés</a>
-    <a href="#reto-oliver"><b>L</b>Leonardo</a>
+    <a href="#reto-leonardo"><b>L</b>Leonardo</a>
   </nav>
 
   <!-- ================= RETO DE BENJAMIN ================= -->
@@ -114,10 +114,29 @@
   </section>
   <!-- ================= FIN ANDRES ================= -->
 
-  <!-- ================= RETO DE OLIVER ================= -->
-  <section class="reto" id="reto-oliver">
-    <h2>Reto de Oliver</h2>
-    <p class="pendiente">Pendiente: aquí va el reto y su reseña.</p>
+  <!-- ================= RETO DE LEONARDO ================= -->
+  <section class="reto" id="reto-leonardo">
+    <h2>Reto: Partir Frase por Ancho Máximo — Leonardo</h2>
+
+    <div class="contenedor-reto-leo">
+      <label for="frase-leo">Frase a dividir:</label>
+      <input type="text" id="frase-leo" value="Hoy es un día de suerte para todos">
+
+      <label for="ancho-leo">Ancho máximo por segmento:</label>
+      <input type="number" id="ancho-leo" value="7" min="1">
+
+      <button onclick="ejecutarRetoLeonardo()">Dividir Frase</button>
+    </div>
+
+    <h4>Resultado:</h4>
+    <div id="resultado-leo" class="salida-leo">Haz clic en el botón para probar la función...</div>
+
+    <div class="resena">
+      <h3>Reseña y conclusión</h3>
+      <p><strong>Conceptos usados:</strong> Arreglos, descomposicion de cadenas con <code>split()</code>, acumuladores con <code>reduce()</code> y lógica condicional.</p>
+      <p><strong>Decisión:</strong> Se optó por usar <code>reduce()</code> para iterar sobre las palabras limpiamente construyendo las líneas dinámicamente sin cortar palabras por la mitad.</p>
+      <p><strong>Dificultad resuelta:</strong> Controlar los espacios en blanco entre palabras para no superar el límite indicado.</p>
+    </div>
   </section>
   <!-- ================= FIN LEONARDO ================= -->
 
@@ -125,5 +144,6 @@
   <script src="benjamin.js"></script>
   <script src="diegoT.js"></script>
   <script src="andres.js"></script>
+  <script src="leonardo.js"></script>
 </body>
 </html>
