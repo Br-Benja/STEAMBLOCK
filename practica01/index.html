@@ -3,84 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Práctica 01 - Git + JavaScript (Retos)</title>
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
-    header { border-bottom: 2px solid #444; margin-bottom: 1.5rem; }
-    section.reto { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
-    section.reto h2 { margin-top: 0; }
-    .resena { background: #f5f5f5; padding: .75rem; border-radius: 6px; }
-    /* ===== ESTILOS DE BENJAMIN (solo edita Benjamin aquí) ===== */
-    /* ===== FIN BENJAMIN ===== */
-    /* ===== ESTILOS DE DIEGO C ===== */
-    /* ===== FIN DIEGO C ===== */
-    /* ===== ESTILOS DE DIEGO T ===== */
-    /* ===== FIN DIEGO T ===== */
-    /* ===== ESTILOS DE ANDRES ===== */
-    /* ===== FIN ANDRES ===== */
-  </style>
+  <title>STEAMBLOCK - Práctica 01 Git + JavaScript</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <header>
-    <h1>Práctica 01: Git + JavaScript</h1>
+    <h1>STEAMBLOCK</h1>
+    <p class="lema">Práctica 01 de Git y JavaScript: cada integrante resuelve un reto en su propia rama.</p>
     <!-- Esta línea la editan TODOS a propósito (conflicto controlado) -->
-    <p>Equipo: NOMBRE_DEL_EQUIPO | Integrantes: Benjamin</p>
+    <p id="integrantes">Equipo: STEAMBLOCK | Integrantes: Benjamin</p>
   </header>
+
+  <nav class="tiles" aria-label="Retos por integrante">
+    <a href="#reto-benjamin"><b>B</b>Benjamin</a>
+    <a href="#reto-diegoC"><b>D</b>Diego C</a>
+    <a href="#reto-diegoT"><b>D</b>Diego T</a>
+    <a href="#reto-andres"><b>A</b>Andrés</a>
+    <a href="#reto-oliver"><b>L</b>Leonardo</a>
+  </nav>
 
   <!-- ================= RETO DE BENJAMIN ================= -->
   <section class="reto" id="reto-benjamin">
-    <h2>Reto: (nombre del reto) — Benjamin</h2>
-    <!-- Interfaz del reto aquí -->
+    <h2>Filtrar tabla</h2>
+
+    <input type="text" id="filtro-benjamin" placeholder="Buscar en cualquier columna...">
+
+    <table id="tabla-benjamin">
+      <thead>
+        <tr><th>Nombre</th><th>Ciudad</th><th>Edad</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Juan</td><td>Barcelona</td><td>32</td></tr>
+        <tr><td>Julia</td><td>Madrid</td><td>28</td></tr>
+        <tr><td>Jorge</td><td>Sevilla</td><td>45</td></tr>
+        <tr><td>Marta</td><td>Barcelona</td><td>32</td></tr>
+        <tr><td>Pedro</td><td>Valencia</td><td>19</td></tr>
+      </tbody>
+    </table>
+
+    <p id="sin-resultados-benjamin" class="vacio" style="display:none">No hay coincidencias.</p>
+
     <div class="resena">
       <h3>Reseña y conclusión</h3>
-      <p>Conceptos usados, decisión, dificultad resuelta, limitación y lo aprendido de Git.</p>
+      <p><strong>Conceptos usados:</strong></p>
+      <ul>
+        <li><strong>Eventos (<code>input</code>):</strong> con <code>addEventListener</code> el filtro se ejecuta cada vez que se escribe o borra en el campo.</li>
+        <li><strong>DOM (<code>querySelectorAll</code>, <code>style.display</code>):</strong> selecciono las filas del <code>tbody</code> y las muestro u oculto sin tocar los encabezados.</li>
+        <li><strong>Strings (<code>toLowerCase</code>, <code>includes</code>, <code>trim</code>):</strong> comparo sin distinguir mayúsculas y busco en el texto completo de la fila, por lo que funciona en cualquier columna.</li>
+      </ul>
+      <p><strong>Conclusión:</strong></p>
+      <ul>
+        <li><strong>Decisión:</strong> ocultar filas con <code>display</code> en lugar de borrarlas y recrearlas, así restaurar el filtro es trivial.</li>
+        <li><strong>Dificultad resuelta:</strong> ejecuté <code>git add practica01/</code> estando dentro de esa carpeta y falló; lo resolví entendiendo que las rutas son relativas a donde estoy parado y usando <code>git add .</code>.</li>
+        <li><strong>Limitación:</strong> al buscar en toda la fila, "J" también coincide con una "j" en otra columna, no solo con nombres que empiecen con J.</li>
+        <li><strong>Lo aprendido de Git:</strong> trabajar en una rama propia, hacer commits pequeños y subirlos con <code>push</code> sin tocar <code>main</code>.</li>
+      </ul>
     </div>
   </section>
   <!-- ================= FIN BENJAMIN ================= -->
 
   <!-- ================= RETO DE DIEGO C ================= -->
   <section class="reto" id="reto-diegoC">
-    <h2>Reto: (nombre del reto) — Diego C</h2>
-    <div class="resena">
-      <h3>Reseña y conclusión</h3>
-      <p>...</p>
-    </div>
+    <h2>Reto de Diego C</h2>
+    <p class="pendiente">Pendiente: aquí va el reto y su reseña.</p>
   </section>
   <!-- ================= FIN DIEGO C ================= -->
 
   <!-- ================= RETO DE DIEGO T ================= -->
   <section class="reto" id="reto-diegoT">
-    <h2>Reto: (nombre del reto) — Diego T</h2>
-    <div class="resena">
-      <h3>Reseña y conclusión</h3>
-      <p>...</p>
-    </div>
+    <h2>Reto de Diego T</h2>
+    <p class="pendiente">Pendiente: aquí va el reto y su reseña.</p>
   </section>
   <!-- ================= FIN DIEGO T ================= -->
 
   <!-- ================= RETO DE ANDRES ================= -->
   <section class="reto" id="reto-andres">
-    <h2>Reto: (nombre del reto) — Andrés</h2>
-    <div class="resena">
-      <h3>Reseña y conclusión</h3>
-      <p>...</p>
-    </div>
+    <h2>Reto de Andrés</h2>
+    <p class="pendiente">Pendiente: aquí va el reto y su reseña.</p>
   </section>
   <!-- ================= FIN ANDRES ================= -->
 
-  <script>
-    // ===== JS DE BENJAMIN =====
-    // ===== FIN BENJAMIN =====
+  <!-- ================= RETO DE OLIVER ================= -->
+  <section class="reto" id="reto-oliver">
+    <h2>Reto de Oliver</h2>
+    <p class="pendiente">Pendiente: aquí va el reto y su reseña.</p>
+  </section>
+  <!-- ================= FIN LEONARDO ================= -->
 
-    // ===== JS DE DIEGO C =====
-    // ===== FIN DIEGO C =====
-
-    // ===== JS DE DIEGO T =====
-    // ===== FIN DIEGO T =====
-
-    // ===== JS DE ANDRES =====
-    // ===== FIN ANDRES =====
-  </script>
+  <!-- Un script por integrante: cada quien agrega el suyo aquí -->
+  <script src="benjamin.js"></script>
 </body>
 </html>
