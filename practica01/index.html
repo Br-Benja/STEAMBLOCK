@@ -52,6 +52,15 @@
   <!-- ================= RETO DE DIEGO T ================= -->
   <section class="reto" id="reto-diegoT">
     <h2>Reto: Frecuencia de caracteres — Diego T</h2>
+    <input type="text" id="frase-diegoT" placeholder="Escribe una frase...">
+    <button type="button" id="btn-contar-diegoT">Contar caracteres</button>
+    <table id="tabla-diegoT" border="1" cellpadding="6" style="display:none">
+      <thead>
+        <tr><th>Carácter</th><th>Veces</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p id="sin-resultados-diegoT" style="display:none">La frase no tiene letras ni números.</p>
     <div class="resena">
       <h3>Reseña y conclusión</h3>
       <p>...</p>
@@ -77,6 +86,73 @@
     // ===== FIN DIEGO C =====
 
     // ===== JS DE DIEGO T =====
+    /*El algoritmo sería:
+      crear lista-de-objetos (car, veces)
+      normalizar frase (todo a min, quitar acentos)
+      Para cada caracter de la frase
+        leer caracter
+        si existe en lista-de-objetos incrementar veces
+        si no existe añadir objeto con veces a 1
+      ordenar lista-de-objetos
+      Devolver la lista-de-objetos
+    */
+    function normalizar(frase){
+      let vocales = ['a','e','i','o','u'];
+      let vocacent = ['á','é','í','ó','ú'];
+      let ind, j;
+      let normal = '';
+      frase = frase.toLowerCase();
+      for(ind = 0; ind < frase.length; ind++){
+        j = vocacent.indexOf(frase[ind]);
+        if(j >= 0){
+          normal += vocales[j];
+        }
+        else{
+          if((frase[ind].match(/[a-z0-9]/i)) != null){
+            normal += frase[ind];
+          }
+        }
+      }
+      return normal;
+    }
+
+    function cuentaCars(frase){
+      let lista = [];
+      let ind = 0;
+      frase = normalizar(frase);
+      for(let c = 0; c < frase.length; c++){
+        ind = lista.findIndex((v)=>v.car == frase[c]);
+        if(ind >= 0){
+          lista[ind].veces++;
+        }
+        else{
+          lista.push({car: frase[c], veces: 1});
+        }
+      }
+      lista.sort((a,b)=>(a.car > b.car)?1:-1);
+      return lista;
+    }
+
+    document.getElementById('btn-contar-diegoT').addEventListener('click', function(){
+      let frase = document.getElementById('frase-diegoT').value;
+      let lista = cuentaCars(frase);
+      let tabla = document.getElementById('tabla-diegoT');
+      let cuerpo = tabla.querySelector('tbody');
+      let sinResultados = document.getElementById('sin-resultados-diegoT');
+      cuerpo.innerHTML = '';
+      for(let obj of lista){
+        let fila = document.createElement('tr');
+        let celdaCar = document.createElement('td');
+        let celdaVeces = document.createElement('td');
+        celdaCar.textContent = obj.car;
+        celdaVeces.textContent = obj.veces;
+        fila.appendChild(celdaCar);
+        fila.appendChild(celdaVeces);
+        cuerpo.appendChild(fila);
+      }
+      tabla.style.display = (lista.length > 0) ? '' : 'none';
+      sinResultados.style.display = (lista.length > 0) ? 'none' : '';
+    });
     // ===== FIN DIEGO T =====
 
     // ===== JS DE ANDRES =====
