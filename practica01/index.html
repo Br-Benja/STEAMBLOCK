@@ -31,7 +31,21 @@
   <!-- ================= RETO DE BENJAMIN ================= -->
   <section class="reto" id="reto-benjamin">
     <h2>Reto: (nombre del reto) — Benjamin</h2>
-    <!-- Interfaz del reto aquí -->
+    <input type="text" id="filtro-benjamin" placeholder="Buscar en cualquier columna...">
+<table id="tabla-benjamin" border="1" cellpadding="6">
+  <thead>
+    <tr><th>Nombre</th><th>Ciudad</th><th>Edad</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Juan</td><td>Barcelona</td><td>32</td></tr>
+    <tr><td>Julia</td><td>Madrid</td><td>28</td></tr>
+    <tr><td>Jorge</td><td>Sevilla</td><td>45</td></tr>
+    <tr><td>Marta</td><td>Barcelona</td><td>32</td></tr>
+    <tr><td>Pedro</td><td>Valencia</td><td>19</td></tr>
+  </tbody>
+</table>
+<p id="sin-resultados-benjamin" style="display:none">No hay coincidencias.</p>
+
     <div class="resena">
       <h3>Reseña y conclusión</h3>
       <p>Conceptos usados, decisión, dificultad resuelta, limitación y lo aprendido de Git.</p>
@@ -71,7 +85,25 @@
 
   <script>
     // ===== JS DE BENJAMIN =====
-    // ===== FIN BENJAMIN =====
+const filtro = document.getElementById("filtro-benjamin");
+const filas = document.querySelectorAll("#tabla-benjamin tbody tr");
+const mensaje = document.getElementById("sin-resultados-benjamin");
+
+filtro.addEventListener("input", () => {
+  const texto = filtro.value.trim().toLowerCase();
+  let visibles = 0;
+
+  filas.forEach((fila) => {
+    const contenido = fila.textContent.toLowerCase();
+    const coincide = contenido.includes(texto);
+
+    fila.style.display = coincide ? "" : "none";
+    if (coincide) visibles++;
+  });
+
+  mensaje.style.display = visibles === 0 ? "block" : "none";
+});
+// ===== FIN BENJAMIN =====
 
     // ===== JS DE DIEGO C =====
     // ===== FIN DIEGO C =====
