@@ -75,8 +75,24 @@
 
   <!-- ================= RETO DE DIEGO T ================= -->
   <section class="reto" id="reto-diegoT">
-    <h2>Reto de Diego T</h2>
-    <p class="pendiente">Pendiente: aquí va el reto y su reseña.</p>
+    <h2>Frecuencia de caracteres</h2>
+
+    <input type="text" id="frase-diegoT" placeholder="Escribe una frase...">
+    <button type="button" id="btn-contar-diegoT">Contar caracteres</button>
+
+    <table id="tabla-diegoT" style="display:none">
+      <thead>
+        <tr><th>Carácter</th><th>Veces</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <p id="sin-resultados-diegoT" class="vacio" style="display:none">La frase no tiene letras ni números.</p>
+
+    <div class="resena">
+      <h3>Reseña y conclusión</h3>
+      <p>...</p>
+    </div>
   </section>
   <!-- ================= FIN DIEGO T ================= -->
 
@@ -96,5 +112,6 @@
 
   <!-- Un script por integrante: cada quien agrega el suyo aquí -->
   <script src="benjamin.js"></script>
+  <script src="diegoT.js"></script>
 </body>
 </html>
