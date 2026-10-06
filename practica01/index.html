@@ -4,21 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Práctica 01 - Git + JavaScript (Retos)</title>
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
-    header { border-bottom: 2px solid #444; margin-bottom: 1.5rem; }
-    section.reto { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
-    section.reto h2 { margin-top: 0; }
-    .resena { background: #f5f5f5; padding: .75rem; border-radius: 6px; }
-    /* ===== ESTILOS DE BENJAMIN (solo edita Benjamin aquí) ===== */
-    /* ===== FIN BENJAMIN ===== */
-    /* ===== ESTILOS DE DIEGO C ===== */
-    /* ===== FIN DIEGO C ===== */
-    /* ===== ESTILOS DE DIEGO T ===== */
-    /* ===== FIN DIEGO T ===== */
-    /* ===== ESTILOS DE ANDRES ===== */
-    /* ===== FIN ANDRES ===== */
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -96,36 +82,6 @@
   </section>
   <!-- ================= FIN ANDRES ================= -->
 
-  <script>
-    // ===== JS DE BENJAMIN =====
-const filtro = document.getElementById("filtro-benjamin");
-const filas = document.querySelectorAll("#tabla-benjamin tbody tr");
-const mensaje = document.getElementById("sin-resultados-benjamin");
-
-filtro.addEventListener("input", () => {
-  const texto = filtro.value.trim().toLowerCase();
-  let visibles = 0;
-
-  filas.forEach((fila) => {
-    const contenido = fila.textContent.toLowerCase();
-    const coincide = contenido.includes(texto);
-
-    fila.style.display = coincide ? "" : "none";
-    if (coincide) visibles++;
-  });
-
-  mensaje.style.display = visibles === 0 ? "block" : "none";
-});
-// ===== FIN BENJAMIN =====
-
-    // ===== JS DE DIEGO C =====
-    // ===== FIN DIEGO C =====
-
-    // ===== JS DE DIEGO T =====
-    // ===== FIN DIEGO T =====
-
-    // ===== JS DE ANDRES =====
-    // ===== FIN ANDRES =====
-  </script>
+  <script src="benjamin.js"></script>
 </body>
 </html>
