@@ -48,6 +48,19 @@
 
     <div class="resena">
       <h3>Reseña y conclusión</h3>
+<p><strong>Conceptos usados:</strong></p>
+<ul>
+  <li><strong>Eventos (<code>input</code>):</strong> con <code>addEventListener</code> el filtro se ejecuta cada vez que se escribe o borra en el campo.</li>
+  <li><strong>DOM (<code>querySelectorAll</code>, <code>style.display</code>):</strong> selecciono las filas del <code>tbody</code> y las muestro u oculto sin tocar los encabezados.</li>
+  <li><strong>Strings (<code>toLowerCase</code>, <code>includes</code>, <code>trim</code>):</strong> comparo sin distinguir mayúsculas y busco en el texto completo de la fila, por lo que funciona en cualquier columna.</li>
+</ul>
+<p><strong>Conclusión:</strong></p>
+<ul>
+  <li><strong>Decisión:</strong> ocultar filas con <code>display</code> en lugar de borrarlas y recrearlas, así restaurar el filtro es trivial.</li>
+  <li><strong>Dificultad resuelta:</strong> ejecuté <code>git add practica01/</code> estando dentro de esa carpeta y falló; lo resolví entendiendo que las rutas son relativas a donde estoy parado y usando <code>git add .</code>.</li>
+  <li><strong>Limitación:</strong> al buscar en toda la fila, "J" también coincide con una "j" en otra columna, no solo con nombres que empiecen con J.</li>
+  <li><strong>Lo aprendido de Git:</strong> trabajar en una rama propia, hacer commits pequeños y subirlos con <code>push</code> sin tocar <code>main</code>.</li>
+</ul>
       <p>Conceptos usados, decisión, dificultad resuelta, limitación y lo aprendido de Git.</p>
     </div>
   </section>
