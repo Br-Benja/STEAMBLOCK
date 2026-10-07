@@ -13,6 +13,9 @@
     /* ===== ESTILOS DE BENJAMIN (solo edita Benjamin aquí) ===== */
     /* ===== FIN BENJAMIN ===== */
     /* ===== ESTILOS DE DIEGO C ===== */
+        #reto-diegoC input { padding: .4rem; margin-right: .5rem; }
+    #reto-diegoC button { padding: .4rem 1rem; cursor: pointer; }
+    #diegoC-resultado { font-weight: bold; margin-top: .75rem; }
     /* ===== FIN DIEGO C ===== */
     /* ===== ESTILOS DE DIEGO T ===== */
     /* ===== FIN DIEGO T ===== */
@@ -40,11 +43,16 @@
   <!-- ================= FIN BENJAMIN ================= -->
 
   <!-- ================= RETO DE DIEGO C ================= -->
-  <section class="reto" id="reto-diegoC">
-    <h2>Reto: (nombre del reto) — Diego C</h2>
+    <section class="reto" id="reto-diegoC">
+    <h2>Reto: ¿Son anagramas? — Diego C</h2>
+    <p>Escribe dos palabras y comprueba si son anagramas.</p>
+    <input type="text" id="diegoC-palabra1" placeholder="Palabra 1">
+    <input type="text" id="diegoC-palabra2" placeholder="Palabra 2">
+    <button id="diegoC-boton">Comprobar</button>
+    <p id="diegoC-resultado"></p>
     <div class="resena">
       <h3>Reseña y conclusión</h3>
-      <p>...</p>
+      <p>Pendiente: conceptos usados, decisión, dificultad resuelta, limitación y lo aprendido de Git.</p>
     </div>
   </section>
   <!-- ================= FIN DIEGO C ================= -->
@@ -74,6 +82,23 @@
     // ===== FIN BENJAMIN =====
 
     // ===== JS DE DIEGO C =====
+        function esAnagramaDiegoC(a, b) {
+      a = a.trim().toLowerCase();
+      b = b.trim().toLowerCase();
+      if (a === "" || b === "") return false;   // vacías no son anagramas
+      if (a === b) return false;                // iguales no son anagramas
+      if (a.length !== b.length) return false;  // distinta longitud, no
+      return a.split("").sort().join("") === b.split("").sort().join("");
+    }
+
+    document.getElementById("diegoC-boton").addEventListener("click", function () {
+      const p1 = document.getElementById("diegoC-palabra1").value;
+      const p2 = document.getElementById("diegoC-palabra2").value;
+      const resultado = document.getElementById("diegoC-resultado");
+      resultado.textContent = esAnagramaDiegoC(p1, p2)
+        ? "Sí son anagramas"
+        : "No son anagramas";
+    });
     // ===== FIN DIEGO C =====
 
     // ===== JS DE DIEGO T =====
