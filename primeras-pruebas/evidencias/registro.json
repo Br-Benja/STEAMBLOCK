@@ -1,0 +1,129 @@
+[
+  {
+    "id": "00-1_verificar_node_npm",
+    "titulo": "Paso 0.1 — Verificar Node.js y npm",
+    "comandos": [
+      {
+        "comando": "node --version",
+        "salida": "v22.22.0"
+      },
+      {
+        "comando": "npm --version",
+        "salida": "10.9.4"
+      }
+    ]
+  },
+  {
+    "id": "00-2_crear_proyecto",
+    "titulo": "Paso 0.2 — Crear e inicializar la carpeta",
+    "comandos": [
+      {
+        "comando": "mkdir primeras-pruebas",
+        "salida": ""
+      },
+      {
+        "comando": "cd primeras-pruebas",
+        "salida": ""
+      },
+      {
+        "comando": "npm init -y",
+        "salida": "Wrote to ~/primeras-pruebas/package.json:\n\n{\n  \"name\": \"primeras-pruebas\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}"
+      }
+    ]
+  },
+  {
+    "id": "00-3_estructura",
+    "titulo": "Paso 0.3 — Crear los archivos vacíos",
+    "comandos": [
+      {
+        "comando": "ls -1",
+        "salida": "package.json\nporcentaje.js\nprobarPorcentaje.js"
+      }
+    ]
+  },
+  {
+    "id": "01_funcion",
+    "titulo": "Paso 1 — Escribir la función en porcentaje.js",
+    "comandos": []
+  },
+  {
+    "id": "02_exportar",
+    "titulo": "Paso 2 — Exportar la función (module.exports)",
+    "comandos": []
+  },
+  {
+    "id": "03_importar",
+    "titulo": "Paso 3 — Importar la función en probarPorcentaje.js",
+    "comandos": []
+  },
+  {
+    "id": "04_primera_ejecucion",
+    "titulo": "Paso 4 — Primera ejecución (Checkpoint 1)",
+    "comandos": [
+      {
+        "comando": "node probarPorcentaje.js",
+        "salida": "90"
+      }
+    ]
+  },
+  {
+    "id": "06_cuatro_casos",
+    "titulo": "Paso 6 — Ejecutar los cuatro casos manualmente",
+    "comandos": [
+      {
+        "comando": "node probarPorcentaje.js",
+        "salida": "90\n150\n100\n0"
+      }
+    ]
+  },
+  {
+    "id": "07_error_logico",
+    "titulo": "Paso 7 — Provocar un error lógico (/ 10)",
+    "comandos": [
+      {
+        "comando": "node probarPorcentaje.js",
+        "salida": "0\n-300\n100\n-900"
+      }
+    ]
+  },
+  {
+    "id": "08a_prueba_fallida",
+    "titulo": "Paso 8 — Comparación automática con el error (/ 10)",
+    "comandos": [
+      {
+        "comando": "node probarPorcentaje.js",
+        "salida": "PRUEBA FALLIDA"
+      }
+    ]
+  },
+  {
+    "id": "08b_prueba_superada",
+    "titulo": "Paso 8 — Comparación automática con / 100 restaurado",
+    "comandos": [
+      {
+        "comando": "node probarPorcentaje.js",
+        "salida": "PRUEBA SUPERADA"
+      }
+    ]
+  },
+  {
+    "id": "09a_comprobar_con_error",
+    "titulo": "Paso 9 — comprobar() reutilizable con el error (/ 10)",
+    "comandos": [
+      {
+        "comando": "node probarPorcentaje.js",
+        "salida": "✗ 10% de 100 | esperado: 90, obtenido: 0\n✗ 25% de 200 | esperado: 150, obtenido: -300\n✓ 0% de 100\n✗ 100% de 100 | esperado: 0, obtenido: -900"
+      }
+    ]
+  },
+  {
+    "id": "09b_comprobar_corregido",
+    "titulo": "Paso 9 — comprobar() reutilizable con / 100 (todas pasan)",
+    "comandos": [
+      {
+        "comando": "node probarPorcentaje.js",
+        "salida": "✓ 10% de 100\n✓ 25% de 200\n✓ 0% de 100\n✓ 100% de 100"
+      }
+    ]
+  }
+]
