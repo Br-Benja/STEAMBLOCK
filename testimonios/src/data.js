@@ -7,6 +7,21 @@ const testimonios = [
     foto: 'https://i.pravatar.cc/150?img=12' },
   { id: 3, nombre: 'María López', cargo: 'Diseño',
     texto: 'La interfaz es sencilla y fácil de utilizar.',
-    foto: 'https://i.pravatar.cc/150?img=45' }
+    foto: 'https://i.pravatar.cc/150?img=45' },
+  { id: 4, nombre: 'Jorge Ramírez', cargo: 'Calidad',
+    texto: 'Detectamos errores antes de cada entrega gracias a las revisiones.',
+    foto: 'https://i.pravatar.cc/150?img=53' },
+  { id: 5, nombre: 'Sofía Hernández', cargo: 'Soporte',
+    texto: 'Respondemos a los clientes más rápido porque toda la información está en un solo lugar y es fácil de consultar desde cualquier dispositivo, incluso desde el teléfono durante una visita.',
+    foto: 'https://i.pravatar.cc/150?img=47' },
+  { id: 6, nombre: 'Carlos Mendoza', cargo: 'Ventas',
+    texto: 'Presentar avances a los clientes ahora toma minutos.',
+    foto: 'https://i.pravatar.cc/150?img=60' },
+  { id: 7, nombre: 'Valeria Torres', cargo: 'Recursos Humanos',
+    texto: 'La capacitación del personal nuevo fue sencilla.',
+    foto: 'https://i.pravatar.cc/150?img=44' },
+  { id: 8, nombre: 'Ricardo Flores', cargo: 'Infraestructura',
+    texto: 'El sistema se mantiene estable incluso en temporada alta.',
+    foto: 'https://i.pravatar.cc/150?img=68' }
 ];
 export default testimonios;
