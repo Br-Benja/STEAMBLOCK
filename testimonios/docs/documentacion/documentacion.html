@@ -1,0 +1,600 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+@page { size: Letter; }
+* { box-sizing: border-box; }
+body { font-family: Lato, Carlito, sans-serif; color: #2b2f33; font-size: 10.6pt; line-height: 1.6; margin: 0; }
+h1, h2, h3 { color: #1f2d3d; line-height: 1.25; }
+h2 { font-size: 19pt; font-weight: 900; border-bottom: 1.2px solid #3b7a8f; padding-bottom: 8px; margin: 26px 0 16px; break-after: avoid; }
+h3 { font-size: 13pt; color: #2f7488; margin: 22px 0 10px; break-after: avoid; }
+.newpage { break-before: page; }
+p { margin: 8px 0; }
+code { font-family: 'DejaVu Sans Mono', monospace; font-size: 8.4pt; background: #edf1f5; color: #24425a; padding: 1px 4px; border-radius: 3px; }
+pre.code { font-family: 'DejaVu Sans Mono', monospace; font-size: 8.2pt; line-height: 1.55; background: #f0f2f4; border-left: 4px solid #2f7488; padding: 12px 16px; margin: 12px 0; white-space: pre-wrap; break-inside: avoid; }
+pre.num .ln { display: inline-block; width: 26px; color: #9aa4ad; text-align: right; margin-right: 12px; }
+pre.term { font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt; line-height: 1.5; background: #1e1e1e; color: #d4d4d4; padding: 14px 16px; margin: 0; white-space: pre-wrap; border-radius: 4px; }
+pre.term .pr { color: #4ec9b0; } pre.term .dl { color: #d4d4d4; } pre.term .cmd { color: #dcdcaa; }
+pre.term .ok { color: #6a9955; } pre.term .bad { color: #f48771; }
+.kicker { letter-spacing: 3.5px; font-size: 8.4pt; font-weight: 700; color: #2f7488; margin-top: 60px; text-transform: uppercase; }
+.title { font-size: 36pt; font-weight: 900; margin: 6px 0 4px; color: #1f2d3d; }
+.subtitle { font-size: 13pt; color: #6c8ca5; border-bottom: 1.2px solid #3b7a8f; padding-bottom: 10px; margin-bottom: 22px; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 9.6pt; break-inside: avoid; }
+table.kv th { width: 22%; text-align: left; background: #edf2f7; border: 1px solid #d5dce3; padding: 8px 12px; font-weight: 700; }
+table.kv td { border: 1px solid #d5dce3; padding: 8px 12px; }
+table.grid thead th { background: #232f3e; color: #fff; text-align: left; padding: 8px 10px; font-weight: 700; }
+table.grid td { border-bottom: 1px solid #d5dce3; padding: 7px 10px; vertical-align: top; }
+table.grid.center td { text-align: center; }
+table.tests td:last-child { text-align: center; width: 28px; }
+table.tests td:first-child { white-space: nowrap; font-weight: 700; }
+.si { color: #3c8a55; font-weight: 900; } .no { color: #c0392b; font-weight: 900; }
+.cover-table { margin-top: 46px; }
+.box { padding: 12px 16px; margin: 14px 0; border-left: 5px solid #2f7488; background: #e9f0f6; break-inside: avoid; }
+.box b:first-child { color: #2f7488; }
+.box.inc { background: #fbefe2; border-color: #c97a34; } .box.inc b:first-child { color: #b8661f; }
+.box.chk { background: #e8f3ec; border-color: #4d8b60; } .box.chk b:first-child { color: #3f7d51; }
+figure { margin: 14px 0 18px; break-inside: avoid; }
+figure .imgs { display: flex; gap: 10px; justify-content: center; align-items: flex-start; }
+figure img { max-width: 70%; max-height: 245px; border: 1px solid #d5dce3; }
+figure.two img { max-width: 48%; max-height: 210px; }
+figure.three img { max-height: 230px; max-width: 32%; }
+figure.tall img { max-height: 470px; }
+figcaption, .cap { text-align: center; font-size: 8.8pt; color: #555; font-style: italic; margin-top: 6px; }
+figcaption b { font-style: italic; }
+figcaption code, .cap code { font-style: normal; }
+ol.toc { list-style: none; padding: 0; font-size: 10.5pt; }
+ol.toc li { margin: 9px 0; }
+ol.toc li.ann { color: #6b7680; margin: 6px 0; }
+.flow { display: flex; align-items: center; gap: 4px; margin: 16px 0; }
+.flow div { flex: 1; border: 1px solid #3b7a8f; border-radius: 4px; text-align: center; padding: 6px 4px; font-size: 8.4pt; line-height: 1.3; }
+.flow div b { display: block; color: #1f2d3d; font-size: 8.8pt; } .flow div span { color: #2f7488; font-weight: 700; display: block; }
+.flow div small { color: #777; }
+.flow i { color: #3b7a8f; font-style: normal; }
+.band { background: #e9f0f6; text-align: center; letter-spacing: 1.5px; font-weight: 900; color: #1f2d3d; padding: 10px; font-size: 9.8pt; margin: 12px 0; }
+ul li, ol li { margin: 4px 0; }
+.q { font-weight: 700; color: #1f2d3d; margin-top: 14px; }
+</style></head><body>
+
+<div class="kicker">Práctica inicial · React · componentes, props y estado</div>
+<div class="title">Testimonios con React</div>
+<div class="subtitle">Documentación de la práctica: de una tarjeta estática a una interfaz con estado y reproducción automática</div>
+<p>Una aplicación de React creada con Vite que muestra testimonios de uno en uno. Se organizó el frontend en
+componentes, se transfirieron datos mediante <b>props</b>, se comunicaron los clics con <b>callbacks</b> y se actualizó la pantalla
+mediante <b>estado</b>. Después se amplió con <b>reproducción automática</b> usando <code>useEffect</code>. Cada etapa se verificó contra
+resultados esperados, y se provocó un error lógico a propósito para comprobar que las pruebas lo detectan.</p>
+<div class="cover-table"><table class="kv"><tr><th>Integrante</th><td>Víctor Benjamín Bautista Rojas (@Br-Benja)</td></tr><tr><th>Materia</th><td>Ingeniería de Software · Unidad 3 · AGO–DIC 2026</td></tr><tr><th>Práctica</th><td>Práctica inicial de React · Aplicación de testimonios con componentes y estado</td></tr><tr><th>Tecnologías</th><td>React 19.3.1 · Vite 8.3.5 · Node.js v22.22.0 · npm 10.9.4 · JavaScript (JSX) · Git y GitHub · Chromium + Playwright para verificar</td></tr><tr><th>Resultado</th><td>Etapa básica P01–P10 <span class="si">✓</span> · ampliación A01–A07 <span class="si">✓</span> · el error lógico provocado se detectó en 5 de 12 comprobaciones</td></tr><tr><th>Repositorio</th><td><code>github.com/br-benja/steamblock</code> · carpeta <code>testimonios/</code></td></tr><tr><th>Fecha</th><td>29 de octubre de 2026</td></tr></table></div>
+
+<h2 class="newpage">Contenido</h2>
+<ol class="toc">
+<li>1. Introducción y objetivo</li><li>2. Metodología de trabajo</li><li>3. Herramientas y tecnologías</li>
+<li>4. Preparación del entorno (paso 0)</li><li>5. Estructura del proyecto</li><li>6. Desarrollo paso a paso</li>
+<li>7. Casos de prueba</li><li>8. Anatomía de una interacción</li><li>9. Reutilización y productividad</li>
+<li>10. Problemas encontrados y cómo se resolvieron</li><li>11. Preguntas de la guía</li>
+<li>12. Reflexión final</li><li>13. Conclusiones</li>
+<li class="ann">Anexo A. Código final de data.js</li><li class="ann">Anexo B. Código final de Testimonial.jsx y Controls.jsx</li>
+<li class="ann">Anexo C. Código final de App.jsx</li><li class="ann">Anexo D. Código final de main.jsx y styles.css</li>
+<li class="ann">Anexo E. package.json</li>
+</ol>
+
+<h2 class="newpage">1. Introducción y objetivo</h2>
+<h3>1.1 El caso</h3>
+<p>Como visitante de un sitio web, quiero consultar testimonios de clientes mediante controles de navegación para conocer sus
+experiencias con el servicio. Los testimonios y fotografías son datos ficticios de demostración.</p>
+<h3>1.2 Objetivo</h3>
+<p>Construir la interfaz separando <b>datos</b> (<code>data.js</code>), <b>presentación</b> (<code>Testimonial</code>, <code>Controls</code>) y
+<b>coordinación</b> (<code>App</code>); explicar el recorrido desde <code>index.html</code> hasta los componentes visibles, y comprobar la
+navegación con casos normales, de límite y de datos.</p>
+<div class="flow">
+<div><span>1</span><b>Datos</b><small>data.js</small></div><i>→</i>
+<div><span>2</span><b>Tarjeta</b><small>props · item</small></div><i>→</i>
+<div><span>3</span><b>Controles</b><small>callbacks</small></div><i>→</i>
+<div><span>4</span><b>Estado</b><small>useState · %</small></div><i>→</i>
+<div><span>5</span><b>Pruebas</b><small>P01–P10</small></div><i>→</i>
+<div><span>6</span><b>Autoplay</b><small>useEffect · A01–A07</small></div>
+</div>
+<div class="box dec"><b>Pregunta guía:</b> ¿quién decide qué testimonio se ve? <b>Respuesta:</b> solo <code>App</code>, a través de su estado <code>index</code>. Los hijos reciben datos o funciones; ninguno guarda una copia del índice.</div>
+<h3>1.3 Resultado final</h3>
+<ul>
+<li>Se muestra una tarjeta con fotografía, nombre, cargo y comentario, además de la posición actual.</li>
+<li>Anterior y Siguiente recorren todos los testimonios y conectan el último con el primero; Aleatorio nunca repite el actual.</li>
+<li>Con un registro la interfaz funciona; con cero muestra un mensaje sin acceder a campos inexistentes.</li>
+<li>El diseño se adapta a 320, 768 y 1280 px y los controles funcionan con teclado y conservan el foco visible.</li>
+<li>Ampliación: avance cada cinco segundos con Pausar/Reanudar; la navegación manual detiene el avance.</li>
+</ul>
+
+<h2>2. Metodología de trabajo</h2>
+<p>Se siguió la guía en orden y sin adelantar pasos: primero la etapa básica y, solo cuando la navegación manual funcionó y quedó
+probada, la ampliación con temporizadores. Cada avance se guardó en un commit en la rama de trabajo del repositorio.</p>
+<h3>2.1 Rutina de cada paso</h3>
+<ol>
+<li><b>Leer:</b> qué cambia en el paso y qué resultado se espera, antes de escribir código.</li>
+<li><b>Editar:</b> escribir el archivo indicado por la guía.</li>
+<li><b>Ejecutar:</b> <code>npm run dev</code> y revisar en el navegador.</li>
+<li><b>Comparar:</b> contrastar con la tabla de pruebas (P01–P10 o A01–A07).</li>
+<li><b>Guardar:</b> commit con un mensaje que describe el avance.</li>
+</ol>
+<h3>2.2 Reglas que apliqué</h3>
+<ul>
+<li>Primero se define el resultado esperado y después se ejecuta.</li>
+<li>Una sola modificación a la vez: en el error provocado solo cambió <code>App.jsx</code>; el script de pruebas quedó igual.</li>
+<li>Los cambios temporales (P06, P07, índice <code>[1]</code>, experimento de reutilización) se revirtieron antes del siguiente commit.</li>
+<li>Las pruebas básicas se mantienen separadas de las de autoplay.</li>
+</ul>
+
+<h2>3. Herramientas y tecnologías</h2>
+<table class="grid "><thead><tr><th>Herramienta</th><th>Para qué la usé</th></tr></thead><tbody><tr><td><b>Node.js v22.22.0</b></td><td>Ejecutar Vite, npm y los scripts de prueba en el equipo.</td></tr><tr><td><b>npm 10.9.4</b></td><td>Crear el proyecto (<code>npm create vite</code>), instalar dependencias y ejecutar <code>dev</code>, <code>build</code> y <code>preview</code>.</td></tr><tr><td><b>Vite 8.3.5</b></td><td>Plantilla del proyecto, servidor de desarrollo con recarga y compilación para producción en <code>dist/</code>.</td></tr><tr><td><b>React 19.3.1</b></td><td>Componentes, JSX, props, <code>useState</code> y <code>useEffect</code>.</td></tr><tr><td><b>Git y GitHub</b></td><td>Un commit por etapa en <code>br-benja/steamblock</code>.</td></tr><tr><td><b>Chromium + Playwright</b></td><td>Navegador para revisar la interfaz, capturas en tres anchos y scripts de prueba repetibles.</td></tr></tbody></table>
+
+<h2>4. Preparación del entorno (paso 0)</h2>
+<p>Se verificaron las versiones de Node.js y npm, se creó el proyecto con la plantilla <code>react</code> (JavaScript, sin TypeScript),
+se instalaron las dependencias y se levantó el servidor de desarrollo.</p>
+<figure><pre class="term"><span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">node -v</span>
+v22.22.0
+<span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">npm -v</span>
+10.9.4
+<span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">npm create vite@latest testimonios -- --template react --no-interactive</span>
+create-vite v9.3.3
+o  Scaffolding project in /home/user/STEAMBLOCK/testimonios...
+—  Done. Now run:
+  cd testimonios
+  npm install
+  npm run dev
+<span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">cd testimonios</span>
+<span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">npm install</span>
+9 packages are looking for funding
+  run `npm fund` for details
+found 0 vulnerabilities
+<span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">npm run dev</span>
+  VITE v8.3.5  ready in 307 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose</pre><figcaption><b>Figura 1.</b> Paso 0 · versiones, creación del proyecto con Vite, instalación y servidor de desarrollo.</figcaption></figure>
+<div class="box obs"><b>Observación:</b> la versión actual de <code>create-vite</code> (v9.3.3) hace preguntas interactivas; se agregó <code>--no-interactive</code> para usar directamente la plantilla indicada. Además la plantilla de Vite 8 incluye <code>oxlint</code> como linter, <code>src/assets</code> con imágenes de muestra y <code>lang="en"</code> en <code>index.html</code>; se cambió a <code>lang="es"</code> y título “Testimonios”.</div>
+<h3>4.1 Preparar los archivos de la guía</h3>
+<ul>
+<li>Se crearon <code>src/components/</code>, <code>src/data.js</code> y <code>src/styles.css</code>.</li>
+<li>Se reemplazaron <code>App.jsx</code> y <code>main.jsx</code> con las versiones de la guía.</li>
+<li>Se quitaron los imports de <code>App.css</code> e <code>index.css</code> y se eliminaron esos archivos y <code>src/assets</code>.</li>
+<li>Se conservaron <code>index.html</code> con su <code>&lt;div id="root"&gt;&lt;/div&gt;</code>, la configuración y los archivos de dependencias.</li>
+</ul>
+<table class="grid "><thead><tr><th>Comando</th><th>Resultado</th></tr></thead><tbody><tr><td><code>npm install</code></td><td>Instala las dependencias declaradas.</td></tr><tr><td><code>npm run dev</code></td><td>Inicia el entorno de desarrollo en <code>http://localhost:5173</code>.</td></tr><tr><td><code>npm run build</code></td><td>Genera la versión de producción en <code>dist/</code>.</td></tr><tr><td><code>npm run preview</code></td><td>Permite revisar localmente la compilación; no publica el sitio.</td></tr></tbody></table>
+
+<h2>5. Estructura del proyecto</h2>
+<pre class="code">testimonios/
+├── public/                 favicon e íconos de la plantilla
+├── src/
+│   ├── components/
+│   │   ├── Testimonial.jsx  presenta una tarjeta (recibe item)
+│   │   └── Controls.jsx     botones; avisa al padre con callbacks
+│   ├── App.jsx              conserva el estado (index, reproduciendo)
+│   ├── main.jsx             crea la raíz en #root y monta App
+│   ├── data.js              arreglo de 8 testimonios ficticios
+│   └── styles.css           estilos de toda la aplicación
+├── docs/                    capturas, pruebas y esta documentación
+├── index.html               contiene &lt;div id="root"&gt;&lt;/div&gt;
+├── package.json             dependencias y comandos
+├── package-lock.json        versiones resueltas
+└── vite.config.js</pre>
+<p><b>Del archivo inicial a la interfaz:</b> <code>index.html</code> carga <code>main.jsx</code>; <code>main.jsx</code> crea la raíz de React en
+<code>#root</code> y monta <code>App</code>; <code>App</code> importa los datos y renderiza <code>Testimonial</code> y <code>Controls</code>;
+<code>styles.css</code> se importa una sola vez desde <code>main.jsx</code>.</p>
+<h3>5.1 Responsabilidad de cada archivo</h3>
+<table class="grid "><thead><tr><th>Archivo</th><th>Responsabilidad</th><th>Cómo se usó en la práctica</th></tr></thead><tbody><tr><td><code>data.js</code></td><td>Contener los objetos.</td><td>Arreglo de 8 testimonios ficticios con <code>id</code> único. Agregar uno solo toca este archivo.</td></tr><tr><td><code>Testimonial.jsx</code></td><td>Presentar una tarjeta.</td><td>Recibe <code>item</code> y muestra foto, nombre, cargo y texto. No elige ni modifica datos.</td></tr><tr><td><code>Controls.jsx</code></td><td>Comunicar acciones.</td><td>Tres botones que invocan <code>onPrev</code>, <code>onNext</code> y <code>onRandom</code>.</td></tr><tr><td><code>App.jsx</code></td><td>Coordinar y conservar el estado.</td><td><code>index</code>, <code>reproduciendo</code>, funciones de navegación, efecto del temporizador y caso vacío.</td></tr><tr><td><code>main.jsx</code></td><td>Montar la aplicación.</td><td><code>createRoot</code> en <code>#root</code> con <code>StrictMode</code> e import de <code>styles.css</code>.</td></tr><tr><td><code>styles.css</code></td><td>Definir la apariencia.</td><td>Tarjeta, botones de 44 px, foco visible y ajuste a móvil.</td></tr></tbody></table>
+<div class="box dec"><b>Decisión:</b> separar datos, presentación y coordinación <b>porque</b> cada cambio tiene un lugar claro: un testimonio nuevo va en <code>data.js</code>, un cambio visual en <code>Testimonial.jsx</code>/<code>styles.css</code> y un cambio de comportamiento en <code>App.jsx</code>.</div>
+<p><b>Archivos que no se editan a mano:</b> <code>node_modules</code> no se sube al repositorio; <code>package-lock.json</code> sí se incluye;
+<code>dist</code> se genera al compilar. Se respetó el <code>.gitignore</code> de Vite.</p>
+
+<h2>6. Desarrollo paso a paso</h2>
+<p>En esta sección se documenta cada paso de la guía en el orden en que se hizo: qué archivo cambió, qué comando se ejecutó, el código, la evidencia y lo que demuestra. Cada avance se guardó en un commit (Figura 16).</p><h3>Paso 1 · Crear los datos en src/data.js</h3><table class="kv"><tr><th>Archivo</th><td><code>src/data.js</code></td></tr><tr><th>Comando</th><td>Ninguno: es un módulo, todavía no se muestra</td></tr><tr><th>Commit</th><td><code>3e1a7de</code></td></tr></table><pre class="code">const testimonios = [
+  { id: 1, nombre: 'Ana Pérez', cargo: 'Dirección',
+    texto: 'La herramienta facilita organizar nuestras tareas.',
+    foto: 'https://i.pravatar.cc/150?img=32' },
+  { id: 2, nombre: 'Luis García', cargo: 'Desarrollo', ... },
+  { id: 3, nombre: 'María López', cargo: 'Diseño', ... }
+];
+export default testimonios;</pre><p>Es un módulo de JavaScript, no JSON: usa <code>const</code> y <code>export default</code>. Cada objeto tiene un <code>id</code> único que identifica al registro; el índice solo indica su posición.</p><h3>Paso 2 · Componente de presentación Testimonial</h3><table class="kv"><tr><th>Archivo</th><td><code>src/components/Testimonial.jsx</code></td></tr><tr><th>Comando</th><td>Ninguno</td></tr><tr><th>Commit</th><td><code>3e1a7de</code></td></tr></table><pre class="code">export default function Testimonial({ item }) {
+  const { nombre, cargo, texto, foto } = item;
+  return (
+    &lt;article className="testimonial-card"&gt;
+      &lt;img className="testimonial-photo"
+        src={foto} alt={`Retrato ilustrativo de ${nombre}`}
+        width="90" height="90" /&gt;
+      &lt;h2&gt;{nombre}&lt;/h2&gt;
+      &lt;p className="testimonial-role"&gt;{cargo}&lt;/p&gt;
+      &lt;blockquote&gt;{texto}&lt;/blockquote&gt;
+    &lt;/article&gt;
+  );
+}</pre><div class="box dec"><b>Decisión:</b> Testimonial <b>solo presenta</b> el objeto que recibe en <code>item</code>. No importa <code>data.js</code>, no elige a quién mostrar y no modifica el arreglo; así la misma tarjeta sirve para cualquier persona.</div><h3>Paso 3 · Montaje en src/main.jsx y estilos</h3><table class="kv"><tr><th>Archivos</th><td><code>src/main.jsx</code> · <code>src/styles.css</code></td></tr><tr><th>Cambio</th><td>Se quitaron <code>App.css</code>, <code>index.css</code> y <code>src/assets</code> de la plantilla</td></tr><tr><th>Commit</th><td><code>3e1a7de</code></td></tr></table><pre class="code">import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+import './styles.css';
+
+createRoot(document.getElementById('root')).render(
+  &lt;StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/StrictMode&gt;
+);</pre><p><code>createRoot</code> conecta React con el <code>&lt;div id="root"&gt;</code> de <code>index.html</code> y <code>render</code> monta <code>App</code> una sola vez. <code>StrictMode</code> se conserva porque agrega comprobaciones en desarrollo. <code>styles.css</code> (Anexo D) se importa una sola vez aquí.</p><h3>Paso 4 · Primera tarjeta estática</h3><table class="kv"><tr><th>Archivo</th><td><code>src/App.jsx</code></td></tr><tr><th>Comando</th><td><code>npm run dev</code></td></tr><tr><th>Resultado</th><td>Se muestra la tarjeta de Ana Pérez</td></tr><tr><th>Evidencia</th><td>Figuras 2, 3 y 4</td></tr></table><pre class="code">import testimonios from './data.js';
+import Testimonial from './components/Testimonial.jsx';
+
+export default function App() {
+  return (
+    &lt;main className="app"&gt;
+      &lt;h1&gt;Experiencias de nuestros usuarios&lt;/h1&gt;
+      &lt;Testimonial item={testimonios[0]} /&gt;
+    &lt;/main&gt;
+  );
+}</pre><figure class=""><div class="imgs"><img src="img/f-vite-inicial.jpg"></div><figcaption><b>Figura 2.</b> Paso 4 · página de bienvenida de la plantilla de Vite antes de modificarla (<code>npm run dev</code>).</figcaption></figure><figure class=""><div class="imgs"><img src="img/f-tarjeta-estatica.jpg"></div><figcaption><b>Figura 3.</b> Paso 4 · primera tarjeta estática con <code>testimonios[0]</code>.</figcaption></figure><p>Como pide la guía, antes de guardar se predijo qué pasaría al cambiar <code>[0]</code> por <code>[1]</code>: debía aparecer Luis García. Se comprobó y se regresó a <code>[0]</code>.</p><figure class=""><div class="imgs"><img src="img/f-tarjeta-indice1.jpg"></div><figcaption><b>Figura 4.</b> Paso 4 · cambio temporal a <code>testimonios[1]</code>: la misma tarjeta muestra a Luis.</figcaption></figure><div class="box chk"><b>Checkpoint 1:</b> la tarjeta confirma el recorrido <code>index.html</code> → <code>main.jsx</code> → <code>App</code> → <code>Testimonial</code>. Todavía no hay estado: el índice está escrito a mano.</div><h3>Paso 5 · Controles con callbacks</h3><table class="kv"><tr><th>Archivo</th><td><code>src/components/Controls.jsx</code></td></tr><tr><th>Comando</th><td>Ninguno</td></tr><tr><th>Commit</th><td><code>a174cf4</code></td></tr></table><pre class="code">export default function Controls({ onPrev, onNext, onRandom }) {
+  return (
+    &lt;div className="controls"&gt;
+      &lt;button type="button" onClick={onPrev}&gt;Anterior&lt;/button&gt;
+      &lt;button type="button" onClick={onNext}&gt;Siguiente&lt;/button&gt;
+      &lt;button type="button" onClick={onRandom}&gt;Aleatorio&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre><div class="box dec"><b>Decisión:</b> Controls no sabe qué testimonio se muestra. Recibe tres funciones y las entrega a <code>onClick</code> <b>sin ejecutarlas</b> (<code>onClick={onNext}</code>, no <code>onNext()</code>); React las invoca cuando ocurre el clic. Los textos visibles ya son nombres accesibles.</div><h3>Paso 6 · Estado y navegación en App.jsx</h3><table class="kv"><tr><th>Archivo</th><td><code>src/App.jsx</code></td></tr><tr><th>Comando</th><td><code>npm run dev</code></td></tr><tr><th>Resultado</th><td>Anterior, Siguiente y Aleatorio recorren los 3 registros</td></tr><tr><th>Evidencia</th><td>Figuras 5 y 6</td></tr></table><pre class="code">const [index, setIndex] = useState(0);
+const total = testimonios.length;
+
+function next() {
+  setIndex(actual =&gt; (actual + 1) % total);
+}
+function prev() {
+  setIndex(actual =&gt; (actual - 1 + total) % total);
+}
+function random() {
+  if (total &lt; 2) return;
+  const salto = 1 + Math.floor(Math.random() * (total - 1));
+  setIndex(actual =&gt; (actual + salto) % total);
+}</pre><p><code>useState(0)</code> devuelve el valor actual <code>index</code> y la función <code>setIndex</code>. El operador <code>%</code> envuelve los extremos; en <code>prev</code> se suma <code>total</code> para no obtener un número negativo. Aleatorio elige un salto entre 1 y <code>total − 1</code>, por eso nunca repite el actual. Si <code>total === 0</code> se muestra un mensaje en lugar de la tarjeta (Anexo C).</p><table class="grid center"><thead><tr><th>Acción</th><th>Índice antes</th><th>Índice después</th><th>Posición visible</th></tr></thead><tbody><tr><td>Inicio</td><td>—</td><td>0</td><td>1 de 3</td></tr><tr><td>Siguiente</td><td>0</td><td>1</td><td>2 de 3</td></tr><tr><td>Siguiente</td><td>2</td><td>0</td><td>1 de 3</td></tr><tr><td>Anterior</td><td>0</td><td>2</td><td>3 de 3</td></tr></tbody></table><p class="cap">Traza obligatoria con tres registros.</p><figure class=""><div class="imgs"><img src="img/f-navegacion-limite.jpg"></div><figcaption><b>Figura 5.</b> Paso 6 · desde Ana, Anterior muestra a María y la posición 3 de 3.</figcaption></figure><figure class="two"><div class="imgs"><img src="img/f-un-registro.jpg"><img src="img/f-sin-registros.jpg"></div><figcaption><b>Figura 6.</b> Paso 6 · casos de datos: con un solo registro los controles no fallan (izquierda); con <code>[]</code> aparece el mensaje y no hay controles (derecha).</figcaption></figure><h3>Paso 7 · Ampliar a ocho registros</h3><table class="kv"><tr><th>Archivo</th><td><code>src/data.js</code></td></tr><tr><th>Cambio</th><td>Se añadieron 5 testimonios ficticios (ids 4 a 8)</td></tr><tr><th>Resultado</th><td>El contador llega a 8 de 8</td></tr><tr><th>Evidencia</th><td>Figura 7</td></tr><tr><th>Commit</th><td><code>459216c</code></td></tr></table><p>Uno de los registros (Sofía Hernández) tiene un texto largo a propósito para comprobar que la tarjeta ajusta el texto sin desbordarse. No hubo que tocar ningún componente: solo <code>data.js</code>.</p><figure class=""><div class="imgs"><img src="img/f-ocho-registros.jpg"></div><figcaption><b>Figura 7.</b> Paso 7 · desde Ana, Anterior llega al último registro: Ricardo Flores, 8 de 8.</figcaption></figure><h3>Paso 8 · Ampliación: reproducción automática</h3><table class="kv"><tr><th>Archivo</th><td><code>src/App.jsx</code></td></tr><tr><th>Comando</th><td><code>npm run dev</code></td></tr><tr><th>Resultado</th><td>Avanza cada 5 s; Pausar/Reanudar; navegar a mano pausa</td></tr><tr><th>Evidencia</th><td>Figuras 12 y 13</td></tr><tr><th>Commit</th><td><code>a670df3</code></td></tr></table><pre class="code">const [reproduciendo, setReproduciendo] = useState(false);
+
+useEffect(() =&gt; {
+  if (!reproduciendo || total &lt; 2) return;
+  const intervalo = setInterval(() =&gt; {
+    setIndex(actual =&gt; (actual + 1) % total);
+  }, 5000);
+  return () =&gt; clearInterval(intervalo);
+}, [reproduciendo, total]);
+
+function navegar(accion) {
+  setReproduciendo(false);
+  accion();
+}</pre><p>En el JSX se reemplazó <code>Controls</code> y se agregó el botón:</p><pre class="code">&lt;Controls
+  onPrev={() =&gt; navegar(prev)}
+  onNext={() =&gt; navegar(next)}
+  onRandom={() =&gt; navegar(random)}
+/&gt;
+{total &gt; 1 &amp;&amp; (
+  &lt;button type="button" className="autoplay-toggle"
+    onClick={() =&gt; setReproduciendo(actual =&gt; !actual)}&gt;
+    {reproduciendo ? 'Pausar' : 'Reanudar'}
+  &lt;/button&gt;
+)}
+&lt;p className="counter"&gt;
+  Testimonio {index + 1} de {total}
+&lt;/p&gt;</pre><div class="box dec"><b>Decisión:</b> El temporizador es un sistema externo al cálculo del JSX, por eso vive en <code>useEffect</code> y no en el cuerpo de <code>App</code>. La limpieza <code>clearInterval</code> evita intervalos acumulados. La reproducción inicia pausada para dejar leer, y se quitó <code>aria-live</code> del contador para no anunciar un cambio cada cinco segundos.</div><h3>Paso 9 · Experimento de reutilización</h3><table class="kv"><tr><th>Archivos</th><td><code>src/App.jsx</code> · <code>src/styles.css</code> (cambio temporal)</td></tr><tr><th>Cambio</th><td>Dos tarjetas extra y una sola regla nueva en <code>.testimonial-card</code></td></tr><tr><th>Resultado</th><td>Las tres tarjetas recibieron el borde</td></tr><tr><th>Evidencia</th><td>Figura 15</td></tr></table><pre class="code">&lt;section aria-label="Ejemplos de testimonios"&gt;
+  &lt;Testimonial item={testimonios[0]} /&gt;
+  &lt;Testimonial item={testimonios[1]} /&gt;
+&lt;/section&gt;
+
+/* styles.css, dentro de .testimonial-card */
+border-left: 6px solid #125ca3;</pre><p>Después de tomar la evidencia se restauró el código con <code>git checkout</code>; la versión entregada no contiene el experimento.</p>
+
+<h2>7. Casos de prueba</h2>
+<p>Las pruebas se ejecutaron en el navegador Chromium. Para que fueran repetibles se escribieron dos scripts con Playwright (<code>docs/pruebas/navegacion.cjs</code> y <code>docs/pruebas/autoplay.cjs</code>) que hacen los mismos clics que una persona y usan una función <code>comprobar()</code> para comparar lo obtenido con lo esperado.</p><h3>7.1 Etapa básica (P01–P10)</h3><p>P01–P07 se ejecutaron con los 3 registros iniciales; P06 y P07 cambiando <code>data.js</code> de forma temporal. P08–P10 con los 8 registros.</p><table class="grid tests"><thead><tr><th>Prueba</th><th>Acción y resultado esperado</th><th>Resultado obtenido</th><th></th></tr></thead><tbody><tr><td>P01 Inicio</td><td>Ana y la posición 1 de 3</td><td>Ana Pérez · 1 de 3</td><td><span class="si">✓</span></td></tr><tr><td>P02 Siguiente</td><td>Desde Ana muestra Luis y 2 de 3</td><td>Luis García · 2 de 3</td><td><span class="si">✓</span></td></tr><tr><td>P03 Límite superior</td><td>Desde María, Siguiente muestra Ana</td><td>Ana Pérez · 1 de 3</td><td><span class="si">✓</span></td></tr><tr><td>P04 Límite inferior</td><td>Desde Ana, Anterior muestra María</td><td>María López · 3 de 3</td><td><span class="si">✓</span></td></tr><tr><td>P05 Aleatorio</td><td>Cambia a otra posición válida (10 veces)</td><td>10 de 10 cambios; la fórmula nunca da salto 0</td><td><span class="si">✓</span></td></tr><tr><td>P06 Un registro</td><td>Los controles mantienen el registro</td><td>1 de 1 con los tres botones; sin errores</td><td><span class="si">✓</span></td></tr><tr><td>P07 Sin registros</td><td>Mensaje y sin controles</td><td>“No hay testimonios disponibles.” · 0 botones</td><td><span class="si">✓</span></td></tr><tr><td>P08 Ampliación</td><td>Navegación completa, contador de ocho</td><td>8 testimonios distintos; 8 → 1</td><td><span class="si">✓</span></td></tr><tr><td>P09 Presentación</td><td>Tres anchos, texto largo y teclado</td><td>Sin scroll horizontal en 320/768/1280 px; Tab, Enter y Espacio; foco de 3 px</td><td><span class="si">✓</span></td></tr><tr><td>P10 Compilación</td><td><code>npm run build</code> sin errores</td><td>Compila en 1.51 s; consola limpia</td><td><span class="si">✓</span></td></tr></tbody></table><figure class="three"><div class="imgs"><img src="img/c-p09-320px.jpg"><img src="img/c-p09-768px.jpg"><img src="img/c-p09-1280px.jpg"></div><figcaption><b>Figura 8.</b> P09 · el testimonio de texto largo a 320, 768 y 1280 px: el texto se ajusta y no hay desplazamiento horizontal.</figcaption></figure><figure class=""><div class="imgs"><img src="img/c-p09-foco-teclado.jpg"></div><figcaption><b>Figura 9.</b> P09 · navegación con teclado: Tab llega a Siguiente y el foco visible (contorno de 3 px) se conserva.</figcaption></figure><figure><pre class="term"><span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">npm run build</span>
+vite v8.3.5 building client environment for production...
+transforming...
+<span class="ok">✓ 19 modules transformed.</span>
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.46 kB │ gzip:  0.29 kB
+dist/assets/index-DcxojeVX.css    0.87 kB │ gzip:  0.50 kB
+dist/assets/index-CLlNo2o9.js   222.44 kB │ gzip: 69.83 kB
+
+<span class="ok">✓ built in 1.51s</span></pre><figcaption><b>Figura 10.</b> P10 · <code>npm run build</code> genera la versión de producción en <code>dist/</code>.</figcaption></figure><figure><pre class="term"><span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">node docs/pruebas/navegacion.cjs</span>
+<span class="ok">✓ P01 inicio muestra Ana</span>
+<span class="ok">✓ P01 inicio muestra 1 de 8</span>
+<span class="ok">✓ P02 Siguiente muestra Luis</span>
+<span class="ok">✓ P02 Siguiente muestra 2 de 8</span>
+<span class="ok">✓ P04 Anterior desde Ana muestra el último</span>
+<span class="ok">✓ P03 Siguiente desde el último muestra Ana</span>
+<span class="ok">✓ P05 Aleatorio cambia en 10 de 10 intentos</span>
+<span class="ok">✓ P08 se recorren 8 testimonios distintos</span>
+<span class="ok">✓ P09 sin desplazamiento horizontal a 320 px</span>
+<span class="ok">✓ P09 sin desplazamiento horizontal a 768 px</span>
+<span class="ok">✓ P09 sin desplazamiento horizontal a 1280 px</span>
+<span class="ok">✓ P10 consola sin errores de aplicación</span>
+
+Todas las pruebas pasaron</pre><figcaption><b>Figura 11.</b> Script de navegación sobre la versión final: las 12 comprobaciones muestran ✓.</figcaption></figure><h3>7.2 Reproducción automática (A01–A07)</h3><p>Para no esperar en tiempo real se usó el reloj simulado de Playwright, que adelanta los temporizadores. El script también cuenta cuántos intervalos de 5 s siguen activos, lo que comprueba la limpieza del efecto.</p><table class="grid tests"><thead><tr><th>Prueba</th><th>Resultado esperado</th><th>Resultado obtenido</th><th></th></tr></thead><tbody><tr><td>A01 Activación</td><td>Reanudar inicia avances cada ~5 s</td><td>1 → 2 → 3, uno cada 5 s</td><td><span class="si">✓</span></td></tr><tr><td>A02 Pausa</td><td>Pausar mantiene la tarjeta más de 5 s</td><td>Se mantuvo 12 s en la misma tarjeta</td><td><span class="si">✓</span></td></tr><tr><td>A03 Acción manual</td><td>Anterior/Siguiente/Aleatorio cambian y pausan</td><td>Cambió y el botón volvió a “Reanudar”</td><td><span class="si">✓</span></td></tr><tr><td>A04 Reanudación</td><td>Nuevos avances sin aceleración</td><td>Un avance a los 5 s, ninguno a los 4.9 s</td><td><span class="si">✓</span></td></tr><tr><td>A05 Límites</td><td>El último vuelve al primero</td><td>8 de 8 → 1 de 8</td><td><span class="si">✓</span></td></tr><tr><td>A06 Pocos datos</td><td>Con 0 o 1 registro no hay intervalo</td><td>Sin botón Reanudar; 0 intervalos</td><td><span class="si">✓</span></td></tr><tr><td>A07 Limpieza</td><td>Sin intervalos acumulados</td><td>0 en pausa tras 6 cambios; 1 al reproducir</td><td><span class="si">✓</span></td></tr></tbody></table><figure class="two"><div class="imgs"><img src="img/f-autoplay-antes.jpg"><img src="img/c-a01-autoplay.jpg"></div><figcaption><b>Figura 12.</b> A01 · antes de la corrección el botón Pausar quedaba pegado a los controles (izquierda); con <code>.autoplay-toggle</code> queda separado (derecha).</figcaption></figure><figure><pre class="term"><span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">node docs/pruebas/autoplay.cjs</span>
+<span class="ok">✓ Inicia pausado: no avanza sin Reanudar</span>
+<span class="ok">✓ A01 Reanudar avanza a los 5 s</span>
+<span class="ok">✓ A01 segundo avance a los 10 s</span>
+<span class="ok">✓ A02 Pausar mantiene la tarjeta 12 s</span>
+<span class="ok">✓ A03 Siguiente cambia la tarjeta y pausa</span>
+<span class="ok">✓ A03 el botón vuelve a decir Reanudar</span>
+<span class="ok">✓ A07 tras alternar 6 veces no quedan intervalos</span>
+<span class="ok">✓ A07 al reproducir solo existe 1 intervalo</span>
+<span class="ok">✓ A04 reanudar avanza sin acelerar (5 s)</span>
+<span class="ok">✓ A04 no hay avance antes de 5 s</span>
+<span class="ok">✓ A05 el último vuelve al primero</span>
+
+Todas las pruebas pasaron</pre><figcaption><b>Figura 13.</b> A01–A07 · script de reproducción automática: todas las comprobaciones muestran ✓.</figcaption></figure><h3>7.3 Error lógico provocado</h3><table class="kv"><tr><th>Archivo</th><td><code>src/App.jsx</code> (el script de pruebas no se tocó)</td></tr><tr><th>Cambio</th><td><code>(actual - 1 + total) % total</code> → <code>(actual - 1) % total</code></td></tr><tr><th>Resultado</th><td>5 comprobaciones ✗ · página en blanco al presionar Anterior desde Ana</td></tr><tr><th>Evidencia</th><td>Figura 14</td></tr></table><figure><pre class="term"><span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">node docs/pruebas/navegacion.cjs</span>
+<span class="ok">✓ P01 inicio muestra Ana</span>
+<span class="ok">✓ P01 inicio muestra 1 de 8</span>
+<span class="ok">✓ P02 Siguiente muestra Luis</span>
+<span class="ok">✓ P02 Siguiente muestra 2 de 8</span>
+<span class="bad">✗ P04 Anterior desde Ana muestra el último | esperado: Testimonio 8 de 8, obtenido: null</span>
+<span class="bad">✗ P03 Siguiente desde el último muestra Ana | esperado: Ana Pérez, obtenido: null</span>
+<span class="bad">✗ P05 Aleatorio cambia en 10 de 10 intentos | esperado: 0, obtenido: 10</span>
+<span class="bad">✗ P08 se recorren 8 testimonios distintos | esperado: 8, obtenido: 1</span>
+<span class="ok">✓ P09 sin desplazamiento horizontal a 320 px</span>
+<span class="ok">✓ P09 sin desplazamiento horizontal a 768 px</span>
+<span class="ok">✓ P09 sin desplazamiento horizontal a 1280 px</span>
+<span class="bad">✗ P10 consola sin errores de aplicación | esperado: 0, obtenido: 1</span>
+
+5 prueba(s) fallaron</pre><figcaption><b>Figura 14.</b> Con el error provocado, el mismo script marca 5 ✗ e indica el valor esperado y el obtenido.</figcaption></figure><div class="box inc"><b>Error lógico:</b> en JavaScript <code>-1 % 8</code> vale <code>-1</code>, no 7. Desde Ana el índice se volvió −1, <code>testimonios[-1]</code> es <code>undefined</code> y Testimonial falló al desestructurar: <code>Cannot destructure property 'nombre' of 'item' as it is undefined.</code> Las pruebas de inicio y Siguiente siguieron pasando; solo el caso de límite inferior lo reveló.</div><p>Al restaurar <code>+ total</code> el script volvió a mostrar las 12 comprobaciones con ✓ (Figura 11).</p>
+
+<h2>8. Anatomía de una interacción</h2>
+<p>Cada clic recorre siempre las mismas piezas. Con el botón Siguiente:</p>
+<table class="grid "><thead><tr><th>Elemento</th><th>Ejemplo</th><th>Pregunta</th></tr></thead><tbody><tr><td>Evento</td><td>clic en <code>Siguiente</code></td><td>¿Qué hizo el usuario?</td></tr><tr><td>Callback</td><td><code>onNext</code> → <code>next</code></td><td>¿A quién avisa el hijo?</td></tr><tr><td>Actualización de estado</td><td><code>setIndex(actual =&gt; (actual + 1) % total)</code></td><td>¿Qué valor nuevo se pide?</td></tr><tr><td>Renderizado</td><td>React ejecuta <code>App</code> con <code>index = 1</code></td><td>¿Qué interfaz corresponde?</td></tr><tr><td>Props</td><td><code>item={testimonios[1]}</code></td><td>¿Qué recibe el hijo?</td></tr><tr><td>Confirmación</td><td>cambian foto, nombre, texto y contador en el DOM</td><td>¿Qué cambió en pantalla?</td></tr></tbody></table>
+<div class="band">CLIC → CALLBACK → SETINDEX → RENDERIZADO → PROPS → DOM</div>
+<table class="grid "><thead><tr><th>Qué baja de App</th><th>A quién</th><th>Tipo</th></tr></thead><tbody><tr><td><code>item</code> = <code>testimonios[index]</code></td><td><code>Testimonial</code></td><td>Objeto (datos de solo lectura)</td></tr><tr><td><code>onPrev</code>, <code>onNext</code>, <code>onRandom</code></td><td><code>Controls</code></td><td>Funciones (callbacks)</td></tr></tbody></table>
+<div class="box dec"><b>Idea clave:</b> cambiar una variable local con <code>index++</code> no vuelve a dibujar la pantalla. <code>setIndex</code> le pide a React un nuevo renderizado; React calcula la interfaz y después confirma solo los cambios necesarios en el DOM.</div>
+
+<h2>9. Reutilización y productividad</h2>
+<p>En el experimento del paso 9 se usaron tres tarjetas con el mismo componente y se cambió una sola regla de
+<code>.testimonial-card</code>: las tres recibieron el borde.</p>
+<figure class="tall"><div class="imgs"><img src="img/c-experimento-reutilizacion.jpg"></div><figcaption><b>Figura 15.</b> Experimento de reutilización: una regla de CSS cambia todas las tarjetas creadas con <code>Testimonial</code>.</figcaption></figure>
+<table class="grid "><thead><tr><th>Cambio solicitado</th><th>Lugar principal del cambio</th></tr></thead><tbody><tr><td>Agregar un testimonio</td><td><code>data.js</code></td></tr><tr><td>Modificar la tarjeta de todas las personas</td><td><code>Testimonial.jsx</code> y sus estilos</td></tr><tr><td>Cambiar los textos de los controles</td><td><code>Controls.jsx</code></td></tr><tr><td>Cambiar el comportamiento de navegación</td><td><code>App.jsx</code></td></tr><tr><td>Modificar apariencia sin cambiar navegación</td><td><code>styles.css</code></td></tr></tbody></table>
+<figure><pre class="term"><span class="pr">benja@testimonios</span><span class="dl">$</span> <span class="cmd">git log --oneline</span>
+e7eea0e docs: agrega README de entrega, registro de pruebas y respuestas
+a670df3 feat: agrega reproducción automática con Pausar/Reanudar (useEffect)
+459216c feat: añade cinco testimonios ficticios y capturas de pruebas P09
+a174cf4 feat: agrega Controls y estado de navegación (anterior, siguiente, aleatorio)
+3e1a7de feat: agrega datos, componente Testimonial y primera tarjeta estática
+d4c89bc chore: crea proyecto testimonios con Vite (plantilla react)
+5d98c40 feat: agrega index.html base de practica01</pre><figcaption><b>Figura 16.</b> Historial del repositorio: un commit por cada etapa de la guía.</figcaption></figure>
+
+<h2>10. Problemas encontrados y cómo se resolvieron</h2>
+<table class="grid "><thead><tr><th>Problema</th><th>Causa</th><th>Solución</th></tr></thead><tbody><tr><td>La plantilla de Vite no era igual a la de la guía (<code>oxlint</code>, <code>src/assets</code>, <code>lang="en"</code>).</td><td>Vite 8 y create-vite v9 son más recientes que la guía.</td><td>Se eliminaron <code>App.css</code>, <code>index.css</code> y <code>src/assets</code>; se cambió a <code>lang="es"</code>.</td></tr><tr><td>En una captura la fotografía salía en blanco.</td><td>Las fotos vienen de una URL remota (pravatar.cc) y la captura se tomó antes de terminar la descarga.</td><td>Esperar a que la red termine antes de capturar. <code>width</code> y <code>height</code> ya reservan el espacio.</td></tr><tr><td>El botón Pausar quedaba pegado a la fila de controles.</td><td>Es un botón suelto fuera de <code>.controls</code>, sin margen propio.</td><td>Se agregó <code>className="autoplay-toggle"</code> con <code>margin-top: 10px</code> y se repitieron A01–A07.</td></tr><tr><td>El script de pruebas se detenía con un error de tiempo de espera en lugar de reportar ✗.</td><td>Con la página en blanco no existía <code>.counter</code> y el script esperaba 30 s.</td><td>Leer con espera corta y devolver <code>null</code> si el elemento no existe; así <code>comprobar()</code> reporta el fallo.</td></tr><tr><td>Se quería esperar 5 s reales en cada prueba de autoplay.</td><td>Las pruebas A01–A07 tardarían más de un minuto y serían inestables.</td><td>Reloj simulado de Playwright para adelantar el tiempo y contar los intervalos activos.</td></tr></tbody></table>
+<div class="box obs"><b>Nota:</b> el resultado incorrecto de la sección 7.3 no aparece aquí porque fue un error provocado a propósito.</div>
+
+<h2>11. Preguntas de la guía</h2>
+<p class="q">1. ¿Qué archivo contiene la tarjeta y qué recibe item?</p>
+<p><b>Respuesta:</b> <code>src/components/Testimonial.jsx</code>. <code>item</code> recibe un solo objeto testimonio; el hijo no necesita importar
+<code>data.js</code> porque <code>App</code> decide a quién mostrar y le pasa el objeto por props.</p>
+<p class="q">2. ¿Qué diferencia hay entre main.jsx y App.jsx?</p>
+<p><b>Respuesta:</b> <code>main.jsx</code> es el punto de entrada: conecta React con <code>#root</code> y monta la aplicación una vez.
+<code>App.jsx</code> es el componente raíz de la interfaz: importa los datos, conserva el estado y compone a los hijos.</p>
+<p class="q">3. ¿Qué tendría que copiar si no existiera Testimonial?</p>
+<p><b>Respuesta:</b> todo el bloque <code>&lt;article&gt;</code> con imagen, nombre, cargo y comentario en cada lugar donde se muestra una tarjeta;
+cualquier cambio habría que repetirlo en cada copia.</p>
+<p class="q">4. ¿Por qué no se escribe testimonios[index + 1] sin controlar el límite?</p>
+<p><b>Respuesta:</b> en el último registro <code>index + 1</code> vale <code>total</code>, que no existe; el resultado es <code>undefined</code> y la tarjeta
+falla al desestructurar. Con <code>% total</code> el índice vuelve a 0. La sección 7.3 muestra el mismo problema en el límite inferior.</p>
+<p class="q">5. ¿Por qué el temporizador se maneja con un efecto y el clic con un evento?</p>
+<p><b>Respuesta:</b> el clic es una acción concreta del usuario y se responde cuando ocurre. El temporizador es una sincronización con un
+sistema externo (el reloj del navegador) que debe existir mientras se cumpla una condición (<code>reproduciendo</code> y al menos dos registros);
+eso es lo que describe <code>useEffect</code>.</p>
+<p class="q">6. ¿Qué problema evita clearInterval?</p>
+<p><b>Respuesta:</b> que se acumulen intervalos. Sin limpieza, cada Reanudar (o el montaje doble de <code>StrictMode</code>) crearía otro
+intervalo y el avance se aceleraría. A07 comprobó que tras alternar seis veces quedan 0 intervalos en pausa y 1 al reproducir.</p>
+<p class="q">7. ¿Por qué no existe un Hook llamado render?</p>
+<p><b>Respuesta:</b> renderizar no es algo que el componente pida: React ejecuta la función del componente cuando cambian su estado o sus
+props. El componente solo devuelve JSX. <code>createRoot(...).render(&lt;App /&gt;)</code> es un método de la raíz para el montaje inicial, no un Hook.</p>
+<p class="q">8. ¿Qué cambiaría si el arreglo llegara de una API y pudiera actualizarse?</p>
+<p><b>Respuesta:</b> los testimonios pasarían a ser estado que empieza vacío, se cargarían en un efecto con <code>fetch</code>, habría que
+mostrar estados de “cargando” y “error”, y si cambia el tamaño del arreglo habría que asegurar que <code>index</code> siga siendo válido. La
+dependencia <code>total</code> del efecto ya permitiría volver a sincronizar el autoplay.</p>
+
+<h2>12. Reflexión final</h2>
+<p><b>Qué reutilicé.</b> <code>Testimonial</code> sirve para cualquier persona: en el experimento se usó tres veces y un solo cambio en
+<code>.testimonial-card</code> se vio en todas. Sin el componente habría copiado el mismo bloque de JSX en cada lugar.</p>
+<p><b>Comparación con actualizar el DOM a mano.</b> Con JavaScript puro, cada clic tendría que buscar y cambiar la foto, el texto
+alternativo, el nombre, el cargo, el comentario y el contador, sin olvidar ninguno. En React describo la interfaz en función de
+<code>index</code> y React calcula qué cambia.</p>
+<p><b>Qué depende de mi diseño y qué aporta React.</b> Mío: separar datos, presentación y coordinación, decidir que el estado viva en
+<code>App</code> y cómo nombrar las props. React aporta el modelo de componentes, el estado, el renderizado y la confirmación en el DOM.</p>
+<p><b>Un costo de React en una app pequeña.</b> Requiere Node, npm, Vite, un paso de compilación y aprender JSX y Hooks. Una página con tres
+testimonios fijos podría resolverse con HTML, CSS y JavaScript.</p>
+<p><b>Lo que me llevo.</b> Las pruebas de inicio y de Siguiente pasaron aun con el error provocado; solo el caso de límite lo reveló. Por eso
+conviene probar casos normales, de límite y de datos (uno y cero registros), y ver fallar la prueba al menos una vez.</p>
+<p><b>Una pregunta que todavía tengo.</b> ¿Cómo decide React qué nodos del DOM reutilizar cuando una lista se renderiza con <code>map</code>, y por
+qué la <code>key</code> debe ser estable como <code>item.id</code>?</p>
+
+<h2>13. Conclusiones</h2>
+<ul>
+<li>Se completó el recorrido de la guía: datos → tarjeta → montaje → controles → estado → estilos → pruebas → autoplay → reutilización.</li>
+<li><code>App</code> conserva el índice, <code>Testimonial</code> presenta el registro y <code>Controls</code> comunica acciones mediante callbacks.</li>
+<li>El operador <code>%</code> resuelve los extremos; sin <code>+ total</code> el límite inferior produce un índice negativo y la tarjeta falla.</li>
+<li><code>useEffect</code> con su limpieza mantiene un solo intervalo activo; la navegación manual pausa el avance.</li>
+<li>Se aprobaron P01–P10 y A01–A07, y <code>npm run build</code> compila sin errores.</li>
+<li>Los problemas encontrados (plantilla distinta, foto remota, botón pegado y script que se detenía) se entendieron y resolvieron sin afectar el resultado.</li>
+</ul>
+
+<h2 class="newpage">Anexo A. Código final de data.js</h2>
+<pre class="code num"><span class="ln">1</span>const testimonios = [
+<span class="ln">2</span>  { id: 1, nombre: 'Ana Pérez', cargo: 'Dirección',
+<span class="ln">3</span>    texto: 'La herramienta facilita organizar nuestras tareas.',
+<span class="ln">4</span>    foto: 'https://i.pravatar.cc/150?img=32' },
+<span class="ln">5</span>  { id: 2, nombre: 'Luis García', cargo: 'Desarrollo',
+<span class="ln">6</span>    texto: 'Podemos revisar los avances con mayor claridad.',
+<span class="ln">7</span>    foto: 'https://i.pravatar.cc/150?img=12' },
+<span class="ln">8</span>  { id: 3, nombre: 'María López', cargo: 'Diseño',
+<span class="ln">9</span>    texto: 'La interfaz es sencilla y fácil de utilizar.',
+<span class="ln">10</span>    foto: 'https://i.pravatar.cc/150?img=45' },
+<span class="ln">11</span>  { id: 4, nombre: 'Jorge Ramírez', cargo: 'Calidad',
+<span class="ln">12</span>    texto: 'Detectamos errores antes de cada entrega gracias a las revisiones.',
+<span class="ln">13</span>    foto: 'https://i.pravatar.cc/150?img=53' },
+<span class="ln">14</span>  { id: 5, nombre: 'Sofía Hernández', cargo: 'Soporte',
+<span class="ln">15</span>    texto: 'Respondemos a los clientes más rápido porque toda la información está en un solo lugar y es fácil de consultar desde cualquier dispositivo, incluso desde el teléfono durante una visita.',
+<span class="ln">16</span>    foto: 'https://i.pravatar.cc/150?img=47' },
+<span class="ln">17</span>  { id: 6, nombre: 'Carlos Mendoza', cargo: 'Ventas',
+<span class="ln">18</span>    texto: 'Presentar avances a los clientes ahora toma minutos.',
+<span class="ln">19</span>    foto: 'https://i.pravatar.cc/150?img=60' },
+<span class="ln">20</span>  { id: 7, nombre: 'Valeria Torres', cargo: 'Recursos Humanos',
+<span class="ln">21</span>    texto: 'La capacitación del personal nuevo fue sencilla.',
+<span class="ln">22</span>    foto: 'https://i.pravatar.cc/150?img=44' },
+<span class="ln">23</span>  { id: 8, nombre: 'Ricardo Flores', cargo: 'Infraestructura',
+<span class="ln">24</span>    texto: 'El sistema se mantiene estable incluso en temporada alta.',
+<span class="ln">25</span>    foto: 'https://i.pravatar.cc/150?img=68' }
+<span class="ln">26</span>];
+<span class="ln">27</span>export default testimonios;
+</pre>
+<h2 class="newpage">Anexo B. Código final de Testimonial.jsx y Controls.jsx</h2>
+<h3>src/components/Testimonial.jsx</h3><pre class="code num"><span class="ln">1</span>export default function Testimonial({ item }) {
+<span class="ln">2</span>  const { nombre, cargo, texto, foto } = item;
+<span class="ln">3</span>  return (
+<span class="ln">4</span>    &lt;article className="testimonial-card"&gt;
+<span class="ln">5</span>      &lt;img className="testimonial-photo"
+<span class="ln">6</span>        src={foto} alt={`Retrato ilustrativo de ${nombre}`}
+<span class="ln">7</span>        width="90" height="90" /&gt;
+<span class="ln">8</span>      &lt;h2&gt;{nombre}&lt;/h2&gt;
+<span class="ln">9</span>      &lt;p className="testimonial-role"&gt;{cargo}&lt;/p&gt;
+<span class="ln">10</span>      &lt;blockquote&gt;{texto}&lt;/blockquote&gt;
+<span class="ln">11</span>    &lt;/article&gt;
+<span class="ln">12</span>  );
+<span class="ln">13</span>}
+</pre>
+<h3>src/components/Controls.jsx</h3><pre class="code num"><span class="ln">1</span>export default function Controls({ onPrev, onNext, onRandom }) {
+<span class="ln">2</span>  return (
+<span class="ln">3</span>    &lt;div className="controls"&gt;
+<span class="ln">4</span>      &lt;button type="button" onClick={onPrev}&gt;Anterior&lt;/button&gt;
+<span class="ln">5</span>      &lt;button type="button" onClick={onNext}&gt;Siguiente&lt;/button&gt;
+<span class="ln">6</span>      &lt;button type="button" onClick={onRandom}&gt;Aleatorio&lt;/button&gt;
+<span class="ln">7</span>    &lt;/div&gt;
+<span class="ln">8</span>  );
+<span class="ln">9</span>}
+</pre>
+<h2 class="newpage">Anexo C. Código final de App.jsx</h2>
+<pre class="code num"><span class="ln">1</span>import { useEffect, useState } from 'react';
+<span class="ln">2</span>import testimonios from './data.js';
+<span class="ln">3</span>import Testimonial from './components/Testimonial.jsx';
+<span class="ln">4</span>import Controls from './components/Controls.jsx';
+<span class="ln">5</span>
+<span class="ln">6</span>export default function App() {
+<span class="ln">7</span>  const [index, setIndex] = useState(0);
+<span class="ln">8</span>  const total = testimonios.length;
+<span class="ln">9</span>  const [reproduciendo, setReproduciendo] = useState(false);
+<span class="ln">10</span>
+<span class="ln">11</span>  useEffect(() =&gt; {
+<span class="ln">12</span>    if (!reproduciendo || total &lt; 2) return;
+<span class="ln">13</span>    const intervalo = setInterval(() =&gt; {
+<span class="ln">14</span>      setIndex(actual =&gt; (actual + 1) % total);
+<span class="ln">15</span>    }, 5000);
+<span class="ln">16</span>    return () =&gt; clearInterval(intervalo);
+<span class="ln">17</span>  }, [reproduciendo, total]);
+<span class="ln">18</span>
+<span class="ln">19</span>  function next() {
+<span class="ln">20</span>    setIndex(actual =&gt; (actual + 1) % total);
+<span class="ln">21</span>  }
+<span class="ln">22</span>  function prev() {
+<span class="ln">23</span>    setIndex(actual =&gt; (actual - 1 + total) % total);
+<span class="ln">24</span>  }
+<span class="ln">25</span>  function random() {
+<span class="ln">26</span>    if (total &lt; 2) return;
+<span class="ln">27</span>    const salto = 1 + Math.floor(Math.random() * (total - 1));
+<span class="ln">28</span>    setIndex(actual =&gt; (actual + salto) % total);
+<span class="ln">29</span>  }
+<span class="ln">30</span>  function navegar(accion) {
+<span class="ln">31</span>    setReproduciendo(false);
+<span class="ln">32</span>    accion();
+<span class="ln">33</span>  }
+<span class="ln">34</span>
+<span class="ln">35</span>  if (total === 0) {
+<span class="ln">36</span>    return &lt;main className="app"&gt;
+<span class="ln">37</span>      &lt;h1&gt;Experiencias de nuestros usuarios&lt;/h1&gt;
+<span class="ln">38</span>      &lt;p&gt;No hay testimonios disponibles.&lt;/p&gt;
+<span class="ln">39</span>    &lt;/main&gt;;
+<span class="ln">40</span>  }
+<span class="ln">41</span>
+<span class="ln">42</span>  return (
+<span class="ln">43</span>    &lt;main className="app"&gt;
+<span class="ln">44</span>      &lt;h1&gt;Experiencias de nuestros usuarios&lt;/h1&gt;
+<span class="ln">45</span>      &lt;Testimonial item={testimonios[index]} /&gt;
+<span class="ln">46</span>      &lt;Controls
+<span class="ln">47</span>        onPrev={() =&gt; navegar(prev)}
+<span class="ln">48</span>        onNext={() =&gt; navegar(next)}
+<span class="ln">49</span>        onRandom={() =&gt; navegar(random)}
+<span class="ln">50</span>      /&gt;
+<span class="ln">51</span>      {total &gt; 1 &amp;&amp; (
+<span class="ln">52</span>        &lt;button type="button" className="autoplay-toggle"
+<span class="ln">53</span>          onClick={() =&gt; setReproduciendo(actual =&gt; !actual)}&gt;
+<span class="ln">54</span>          {reproduciendo ? 'Pausar' : 'Reanudar'}
+<span class="ln">55</span>        &lt;/button&gt;
+<span class="ln">56</span>      )}
+<span class="ln">57</span>      &lt;p className="counter"&gt;
+<span class="ln">58</span>        Testimonio {index + 1} de {total}
+<span class="ln">59</span>      &lt;/p&gt;
+<span class="ln">60</span>    &lt;/main&gt;
+<span class="ln">61</span>  );
+<span class="ln">62</span>}
+</pre>
+<h2 class="newpage">Anexo D. Código final de main.jsx y styles.css</h2>
+<h3>src/main.jsx</h3><pre class="code num"><span class="ln">1</span>import { StrictMode } from 'react';
+<span class="ln">2</span>import { createRoot } from 'react-dom/client';
+<span class="ln">3</span>import App from './App.jsx';
+<span class="ln">4</span>import './styles.css';
+<span class="ln">5</span>
+<span class="ln">6</span>createRoot(document.getElementById('root')).render(
+<span class="ln">7</span>  &lt;StrictMode&gt;
+<span class="ln">8</span>    &lt;App /&gt;
+<span class="ln">9</span>  &lt;/StrictMode&gt;
+<span class="ln">10</span>);
+</pre>
+<h3>src/styles.css</h3><pre class="code num"><span class="ln">1</span>* { box-sizing: border-box; }
+<span class="ln">2</span>:root {
+<span class="ln">3</span>  font-family: system-ui, sans-serif;
+<span class="ln">4</span>  color: #172b3a;
+<span class="ln">5</span>  background: #f2f5f8;
+<span class="ln">6</span>}
+<span class="ln">7</span>body { margin: 0; padding: 24px 16px; }
+<span class="ln">8</span>.app { width: 100%; max-width: 560px; margin: 0 auto; }
+<span class="ln">9</span>h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
+<span class="ln">10</span>.testimonial-card {
+<span class="ln">11</span>  background: #fff; padding: 24px; border-radius: 16px;
+<span class="ln">12</span>  box-shadow: 0 6px 20px #172b3a14;
+<span class="ln">13</span>  overflow-wrap: anywhere;
+<span class="ln">14</span>}
+<span class="ln">15</span>.testimonial-photo {
+<span class="ln">16</span>  display: block; border-radius: 50%; object-fit: cover;
+<span class="ln">17</span>}
+<span class="ln">18</span>.testimonial-role, .counter { color: #465766; }
+<span class="ln">19</span>blockquote { margin: 16px 0 0; line-height: 1.6; }
+<span class="ln">20</span>.controls {
+<span class="ln">21</span>  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px;
+<span class="ln">22</span>}
+<span class="ln">23</span>button {
+<span class="ln">24</span>  font: inherit; min-height: 44px; padding: 10px 16px;
+<span class="ln">25</span>  border: 1px solid #284e69; border-radius: 8px;
+<span class="ln">26</span>  background: #fff; color: #17364d; cursor: pointer;
+<span class="ln">27</span>}
+<span class="ln">28</span>button:hover { background: #e4eef5; }
+<span class="ln">29</span>.autoplay-toggle { margin-top: 10px; }
+<span class="ln">30</span>button:focus-visible { outline: 3px solid #125ca3; outline-offset: 3px; }
+<span class="ln">31</span>@media (max-width: 360px) {
+<span class="ln">32</span>  .testimonial-card { padding: 18px; }
+<span class="ln">33</span>}
+</pre>
+<h2 class="newpage">Anexo E. package.json</h2>
+<pre class="code num"><span class="ln">1</span>{
+<span class="ln">2</span>  "name": "testimonios",
+<span class="ln">3</span>  "private": true,
+<span class="ln">4</span>  "version": "0.0.0",
+<span class="ln">5</span>  "type": "module",
+<span class="ln">6</span>  "scripts": {
+<span class="ln">7</span>    "dev": "vite",
+<span class="ln">8</span>    "build": "vite build",
+<span class="ln">9</span>    "lint": "oxlint",
+<span class="ln">10</span>    "preview": "vite preview"
+<span class="ln">11</span>  },
+<span class="ln">12</span>  "dependencies": {
+<span class="ln">13</span>    "react": "^19.3.1",
+<span class="ln">14</span>    "react-dom": "^19.3.1"
+<span class="ln">15</span>  },
+<span class="ln">16</span>  "devDependencies": {
+<span class="ln">17</span>    "@types/react": "^19.3.0",
+<span class="ln">18</span>    "@types/react-dom": "^19.3.0",
+<span class="ln">19</span>    "@vitejs/plugin-react": "^6.1.2",
+<span class="ln">20</span>    "oxlint": "^1.89.0",
+<span class="ln">21</span>    "vite": "^8.3.5"
+<span class="ln">22</span>  }
+<span class="ln">23</span>}
+</pre>
+</body></html>

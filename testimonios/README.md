@@ -10,10 +10,9 @@ Los testimonios y fotografías son datos ficticios de demostración.
 
 ## Integrantes
 
-| Integrante | Rol inicial | Rol después del cambio |
-| --- | --- | --- |
-| _Nombre 1_ | Conductor | Observador |
-| _Nombre 2_ | Observador | Conductor |
+| Integrante | Usuario de GitHub |
+| --- | --- |
+| Víctor Benjamín Bautista Rojas | @Br-Benja |
 
 Pareja revisora: _nombres de la otra pareja_.
 
@@ -73,6 +72,18 @@ Recorrido: `index.html` carga `main.jsx` → `main.jsx` crea la raíz en `#root`
 - **Autoplay con `useEffect`** y limpieza con `clearInterval`; inicia pausado para permitir leer.
   Se retiró `aria-live` del contador para evitar anuncios repetitivos cada cinco segundos.
 - **Fotos remotas (pravatar.cc).** Dependen de conexión; `width` y `height` reservan el espacio mientras cargan.
+
+## Documentación y pruebas repetibles
+
+- Documentación completa en PDF: [`docs/documentacion/Documentacion_Practica_React_Testimonios.pdf`](docs/documentacion/Documentacion_Practica_React_Testimonios.pdf)
+  (fuente editable: `docs/documentacion/documentacion.html`).
+- Scripts que repiten las pruebas en Chromium y reportan ✓/✗ con una función `comprobar()`.
+  Con `npm run dev` corriendo en otra terminal:
+
+```bash
+node docs/pruebas/navegacion.cjs
+node docs/pruebas/autoplay.cjs
+```
 
 ## Registro de pruebas — etapa básica
 
