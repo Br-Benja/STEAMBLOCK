@@ -26,6 +26,7 @@ button {
   background: #fff; color: #17364d; cursor: pointer;
 }
 button:hover { background: #e4eef5; }
+.autoplay-toggle { margin-top: 10px; }
 button:focus-visible { outline: 3px solid #125ca3; outline-offset: 3px; }
 @media (max-width: 360px) {
   .testimonial-card { padding: 18px; }
